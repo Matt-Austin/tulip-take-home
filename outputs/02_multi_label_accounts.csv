@@ -1,0 +1,57 @@
+Account Name,Company Size (Employees),Opportunity Record Type,Deal Type,Close Date,Geo,Industry,Sold Licenses
+Cardinal Medical,SME,New Opportunity,Expansion,2025-07-28,Americas,Industrial Equipment,1
+Cardinal Medical,SMB,Subscription Renewals,Renewal,2026-07-31,Americas,Industrial Equipment,20
+Cardinal Solutions,SMB,New Opportunity,Initial Deployment,2024-10-31,Americas,Industrial Equipment,12
+Cardinal Solutions,SME,New Opportunity,Expansion,2026-01-12,Americas,Industrial Equipment,7
+Cobalt AG,SMB,Subscription Renewals,Renewal,2025-10-31,Americas,Robotics,36
+Cobalt AG,SME,Subscription Renewals,Expansion + Renewal,2026-03-02,Americas,Robotics,35
+Cobalt AG,SMB,New Opportunity,Expansion,2026-04-30,Americas,Robotics,20
+Cobalt Engineering,SME,Subscription Renewals,Renewal,2025-06-26,EMEA,Luxury Consumer Goods,1
+Cobalt Engineering,SMB,New Opportunity,Expansion,2025-12-26,EMEA,Luxury Consumer Goods,9
+Cobalt Engineering,SMB,Subscription Renewals,Expansion + Renewal,2026-03-05,EMEA,Luxury Consumer Goods,1
+Cobalt S.A.,SME,Subscription Renewals,Renewal,2025-06-09,EMEA,Chemicals,1
+Cobalt S.A.,SMB,Subscription Renewals,Expansion + Renewal,2026-04-30,EMEA,Chemicals,1
+Cypress & Co.,SME,Subscription Renewals,Expansion + Renewal,2025-04-15,Americas,Industrial Equipment,5
+Cypress & Co.,SMB,Subscription Renewals,Renewal,2026-01-26,Americas,Industrial Equipment,7
+Cypress Pharma,SME,Subscription Renewals,Expansion + Renewal,2025-06-16,Americas,Industrial Equipment,3
+Cypress Pharma,SMB,Subscription Renewals,Renewal,2025-12-22,Americas,Industrial Equipment,3
+Embershire Beverages,SMB,Subscription Renewals,Renewal,2025-07-30,Americas,Other,14
+Embershire Beverages,SME,Subscription Renewals,Expansion + Renewal,2026-07-31,Americas,Other,18
+Endeavour Metals,SME,Subscription Renewals,Expansion + Renewal,2025-08-06,Americas,Chemicals,2
+Endeavour Metals,SMB,Subscription Renewals,Renewal,2026-08-31,Americas,Chemicals,6
+Fairhaven Chemicals,SME,Subscription Renewals,Expansion + Renewal,2025-09-29,Americas,Medical Device & Diagnostics,9
+Fairhaven Chemicals,SMB,Subscription Renewals,Renewal,2026-09-29,Americas,Medical Device & Diagnostics,13
+Foxley Solutions,SME,Subscription Renewals,Expansion + Renewal,2025-12-10,Americas,Aerospace & Defense,12
+Foxley Solutions,SMB,New Opportunity,Expansion,2026-04-29,Americas,Aerospace & Defense,65
+Foxley Solutions,SMB,Subscription Renewals,Renewal,2026-11-30,Americas,Aerospace & Defense,9
+Garrick Foods,SMB,Subscription Renewals,Renewal,2025-03-19,Americas,Other,4
+Garrick Foods,SME,Subscription Renewals,Expansion + Renewal,2025-05-07,Americas,Other,3
+Garrick Foods,SME,Subscription Renewals,Expansion + Renewal,2026-04-28,Americas,Other,5
+Inverness Holdings,SMB,Subscription Renewals,Expansion + Renewal,2025-10-31,EMEA,Luxury Consumer Goods,22
+Inverness Holdings,SME,New Opportunity,Expansion,2026-07-10,EMEA,Luxury Consumer Goods,66
+Inverness Holdings,SMB,Subscription Renewals,Renewal,2027-01-31,EMEA,Luxury Consumer Goods,3
+Ironwood AG,SMB,Subscription Renewals,Renewal,2026-07-14,EMEA,Pharmaceuticals & Biotech,13
+Ironwood AG,SME,New Opportunity,Expansion,2026-08-31,EMEA,Pharmaceuticals & Biotech,21
+Kingsbrook Equipment,SME,Subscription Renewals,Expansion + Renewal,2025-12-19,Americas,Automotive & Boats,14
+Kingsbrook Equipment,SMB,Subscription Renewals,Renewal,2027-01-31,Americas,Automotive & Boats,12
+Nettleby Aerospace,SME,Subscription Renewals,Expansion + Renewal,2025-03-27,Americas,Automotive & Boats,64
+Nettleby Aerospace,SMB,Subscription Renewals,Renewal,2026-05-29,Americas,Automotive & Boats,143
+Orchid Holdings,SME,New Opportunity,Expansion,2025-02-04,Americas,Aerospace & Defense,10
+Orchid Holdings,SMB,Subscription Renewals,Expansion + Renewal,2026-04-07,Americas,Aerospace & Defense,12
+Penwood Engineering,SME,Subscription Renewals,Renewal,2025-06-16,Americas,Industrial Equipment,1
+Penwood Engineering,SMB,Subscription Renewals,Renewal,2026-06-13,Americas,Industrial Equipment,1
+Quarry Sciences,SME,Subscription Renewals,Expansion + Renewal,2025-03-18,Americas,Medical Device & Diagnostics,12
+Quarry Sciences,SMB,Subscription Renewals,Renewal,2026-03-31,Americas,Medical Device & Diagnostics,15
+Ravenscroft Plastics,SMB,Subscription Renewals,Renewal,2026-02-12,Americas,Renewable Energy,6
+Ravenscroft Plastics,SME,New Opportunity,Expansion,2026-06-30,Americas,Renewable Energy,18
+Redwood Precision,SME,Subscription Renewals,Expansion + Renewal,2026-11-30,EMEA,Industrial Equipment,25
+Redwood Precision,SMB,Subscription Renewals,Renewal,2027-01-31,EMEA,Industrial Equipment,6
+Sablefield Foods,SME,New Opportunity,Expansion,2026-01-05,Americas,Electronics,19
+Sablefield Foods,SMB,Subscription Renewals,Renewal,2026-03-16,Americas,Electronics,1
+Thornton Instruments,SMB,Hardware and Web Orders,Expansion,2025-07-07,Americas,Aerospace & Defense,1
+Thornton Instruments,SME,Subscription Renewals,Expansion + Renewal,2025-12-18,Americas,Aerospace & Defense,32
+Thornton Instruments,SMB,Subscription Renewals,Renewal,2027-01-16,Americas,Aerospace & Defense,28
+Tidewater Biosciences,SME,Subscription Renewals,Expansion + Renewal,2025-07-15,Americas,Chemicals,6
+Tidewater Biosciences,SMB,Subscription Renewals,Renewal,2026-06-30,Americas,Chemicals,6
+Verdant Materials,SMB,New Opportunity,Initial Deployment,2025-01-15,Americas,Aerospace & Defense,20
+Verdant Materials,SME,Subscription Renewals,Expansion + Renewal,2026-01-06,Americas,Aerospace & Defense,22
