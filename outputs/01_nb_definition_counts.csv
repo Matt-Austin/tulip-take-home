@@ -1,0 +1,7 @@
+definition,Close FY,won,lost,closed
+Def0 board (all New Opportunity closed),2025,25,240,265
+Def0 board (all New Opportunity closed),2026,36,159,195
+"Def1 sales-led (ID+Exp, Closed Won/Lost, excl Duplicate)",2025,25,210,235
+"Def1 sales-led (ID+Exp, Closed Won/Lost, excl Duplicate)",2026,17,147,164
+"Def2 land only (Def1, Initial Deployment)",2025,15,193,208
+"Def2 land only (Def1, Initial Deployment)",2026,11,127,138

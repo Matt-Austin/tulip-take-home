@@ -14,3 +14,8 @@ Tools: Claude (claude.ai project for setup, then Claude Code for analysis), Pyth
 - Prompt (paraphrased):
 - AI output:
 - What I checked / changed:
+
+### 2026-10-20 — Inventory / Ex 1A definitions (Claude Code)
+- Prompt (paraphrased): read CLAUDE.md and both PDFs; build `common.py` + `01_inventory.py`; print row counts by Record Type × Deal Type × Stage × Won/Lost × Close FY, Company Size values, and renewal-only fields on non-renewal rows; propose new-business definitions with counts; no win rates yet.
+- AI output: shared loader (strips the trailing space in `Won /Lost `), fiscal-calendar helpers (Close FY reconciles to Close Date on all 1,458 rows), three candidate new-business definitions, inventory CSVs. It flagged the 18 New Opportunity `Ordered / Won` rows (FY26 only, one owner, Eco, Age 0, no ARR) and 42 `Duplicate` losses.
+- What I checked / changed: _(Matt to fill: definition chosen, and why)_

@@ -1,0 +1,51 @@
+Opportunity Record Type,Deal Type,Stage,Won/Lost,Close FY,rows
+Hardware and Web Orders,Expansion,1 Discovery,Open,2026,1
+Hardware and Web Orders,Expansion,Ordered / Won,Won,2025,10
+Hardware and Web Orders,Expansion,Ordered / Won,Won,2026,11
+Hardware and Web Orders,Initial Deployment,Ordered / Won,Won,2025,11
+Hardware and Web Orders,Initial Deployment,Ordered / Won,Won,2026,2
+New Opportunity,Expansion,0 With Finance,Open,2027,2
+New Opportunity,Expansion,1 Discovery,Open,2026,3
+New Opportunity,Expansion,1 Discovery,Open,2027,30
+New Opportunity,Expansion,2 Evaluation,Open,2027,15
+New Opportunity,Expansion,3 Proposal,Open,2026,1
+New Opportunity,Expansion,3 Proposal,Open,2027,9
+New Opportunity,Expansion,Closed Lost,Lost,2025,27
+New Opportunity,Expansion,Closed Lost,Lost,2026,23
+New Opportunity,Expansion,Closed Won,Won,2025,10
+New Opportunity,Expansion,Closed Won,Won,2026,6
+New Opportunity,Expansion,Ordered / Won,Won,2026,18
+New Opportunity,Initial Deployment,1 Discovery,Open,2026,46
+New Opportunity,Initial Deployment,1 Discovery,Open,2027,97
+New Opportunity,Initial Deployment,2 Evaluation,Open,2027,30
+New Opportunity,Initial Deployment,3 Proposal,Open,2026,1
+New Opportunity,Initial Deployment,3 Proposal,Open,2027,12
+New Opportunity,Initial Deployment,4 Decision,Open,2027,3
+New Opportunity,Initial Deployment,5 Procurement,Open,2027,1
+New Opportunity,Initial Deployment,Closed Lost,Lost,2025,213
+New Opportunity,Initial Deployment,Closed Lost,Lost,2026,136
+New Opportunity,Initial Deployment,Closed Won,Won,2025,15
+New Opportunity,Initial Deployment,Closed Won,Won,2026,11
+New Opportunity,Initial Deployment,GTM Ops Review,Won,2026,1
+New Opportunity,Professional Services,Closed Won,Won,2021,1
+Qualification Phase,Initial Deployment,1 Discovery,Open,2026,1
+Qualification Phase,Initial Deployment,Rejected,Lost,2026,11
+Subscription Renewals,Expansion + Renewal,1 At Risk,Open,2027,1
+Subscription Renewals,Expansion + Renewal,2 Open Renewal,Open,2027,11
+Subscription Renewals,Expansion + Renewal,3 Committed to renew,Open,2026,2
+Subscription Renewals,Expansion + Renewal,3 Committed to renew,Open,2027,4
+Subscription Renewals,Expansion + Renewal,4 Renewed / Won,Won,2026,87
+Subscription Renewals,Expansion + Renewal,4 Renewed / Won,Won,2027,24
+Subscription Renewals,Expansion + Renewal,Churned,Lost,2026,9
+Subscription Renewals,Expansion + Renewal,Churned,Lost,2027,4
+Subscription Renewals,Expansion + Renewal,GTM Ops Review,Won,2027,1
+Subscription Renewals,Initial Deployment,Churned,Lost,2027,1
+Subscription Renewals,Renewal,1 At Risk,Open,2027,10
+Subscription Renewals,Renewal,2 Open Renewal,Open,2026,15
+Subscription Renewals,Renewal,2 Open Renewal,Open,2027,224
+Subscription Renewals,Renewal,3 Committed to renew,Open,2026,2
+Subscription Renewals,Renewal,3 Committed to renew,Open,2027,6
+Subscription Renewals,Renewal,4 Renewed / Won,Won,2026,174
+Subscription Renewals,Renewal,4 Renewed / Won,Won,2027,31
+Subscription Renewals,Renewal,Churned,Lost,2026,78
+Subscription Renewals,Renewal,Churned,Lost,2027,16
