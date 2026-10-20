@@ -22,6 +22,10 @@ NB_LOST_STAGE = "Closed Lost"
 ADMIN_STAGES = ["GTM Ops Review", "0 With Finance", "Rejected", "Ordered / Won"]
 
 SIZE_ORDER = ["SMB", "SME", "MM", "ENT"]
+# Planning tiers. SMB and SME are one tier (<500): reps use the two labels
+# interchangeably on the same account (HYGIENE_LOG H10, outputs/02_multi_label_accounts.csv).
+SIZE_TIER = {"SMB": "SME", "SME": "SME", "MM": "MM", "ENT": "ENT"}
+TIER_ORDER = ["SME", "MM", "ENT", "Unknown"]
 PLAN_WIN_RATE = {"SME": 0.10, "MM": 0.35, "ENT": 0.15}  # comparison only, never an input
 
 
@@ -36,6 +40,8 @@ def load() -> pd.DataFrame:
     df["close_fq"] = fiscal_quarter(df["Close Date"])
     assert (df["close_fy"] == df["Close FY"]).all(), "Close FY label disagrees with Close Date"
     assert (df["close_fy"].astype(str) + "Q" + df["close_fq"].astype(str)).eq(df["Close FYQ"]).all()
+    # Raw label stays in 'Company Size (Employees)'; blanks become 'Unknown' (H10, H11)
+    df["size_tier"] = df["Company Size (Employees)"].map(SIZE_TIER).fillna("Unknown")
     return df
 
 

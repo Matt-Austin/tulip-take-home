@@ -7,7 +7,7 @@ Writes outputs/02_size_label_ppl.csv and outputs/02_multi_label_accounts.csv.
 """
 import pandas as pd
 
-from common import OUT, RT_NEW, SIZE_ORDER, load, renewals
+from common import OUT, RT_NEW, SIZE_ORDER, TIER_ORDER, load, renewals
 
 pd.set_option("display.width", 250)
 pd.set_option("display.max_columns", 50)
@@ -59,6 +59,12 @@ consistent = mrows.groupby("Account Name")[["Geo", "Industry", "Region"]].nuniqu
 print(f"  same Geo/Industry/Region across their rows: {int(consistent.sum())} of {len(multi)}")
 sme_accts = set(d.loc[d[SIZE] == "SME", "Account Name"])
 print(f"  SME accounts also labelled SMB elsewhere: {len(multi)} of {len(sme_accts)}")
+
+# Resulting tier mapping (SMB + SME -> SME), with the raw-label split shown
+split = pd.crosstab(df["size_tier"], df[SIZE].fillna("(blank)")).reindex(TIER_ORDER)
+print("\n== size_tier (rows) x raw label, all 1,458 rows ==")
+print(split.to_string())
+
 (mrows.sort_values(["Account Name", "Close Date"])
       [["Account Name", SIZE, "Opportunity Record Type", "Deal Type", "Close Date", "Geo", "Industry", "Sold Licenses"]]
       .to_csv(OUT / "02_multi_label_accounts.csv", index=False))
