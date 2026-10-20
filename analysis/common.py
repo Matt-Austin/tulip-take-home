@@ -24,16 +24,6 @@ ADMIN_STAGES = ["GTM Ops Review", "0 With Finance", "Rejected", "Ordered / Won"]
 SIZE_ORDER = ["SMB", "SME", "MM", "ENT"]
 PLAN_WIN_RATE = {"SME": 0.10, "MM": 0.35, "ENT": 0.15}  # comparison only, never an input
 
-# Four labels -> three planning tiers. SMB and SME cannot be told apart in the file
-# (SME is a minority label in every geo, year and vertical), so both map to the
-# planning SME tier (<500 employees). This is an assumption; the split is reported too.
-SIZE_TO_TIER = {"SMB": "SME", "SME": "SME", "MM": "MM", "ENT": "ENT"}
-TIER_ORDER = ["SME", "MM", "ENT"]
-
-
-def size_tier(df: pd.DataFrame) -> pd.Series:
-    return df["Company Size (Employees)"].map(SIZE_TO_TIER).fillna("(blank)")
-
 
 def load() -> pd.DataFrame:
     """Read the export, strip header whitespace ('Won /Lost ' -> 'Won/Lost')."""
@@ -41,6 +31,11 @@ def load() -> pd.DataFrame:
     df.columns = [c.strip() for c in df.columns]
     df = df.rename(columns={"Won /Lost": "Won/Lost"})
     assert len(df) == 1458, f"expected 1,458 rows, got {len(df)}"
+    # Derive the calendar from dates rather than trusting CRM labels (HYGIENE_LOG H13)
+    df["close_fy"] = fiscal_year(df["Close Date"])
+    df["close_fq"] = fiscal_quarter(df["Close Date"])
+    assert (df["close_fy"] == df["Close FY"]).all(), "Close FY label disagrees with Close Date"
+    assert (df["close_fy"].astype(str) + "Q" + df["close_fq"].astype(str)).eq(df["Close FYQ"]).all()
     return df
 
 
@@ -60,8 +55,7 @@ def check_calendar(df: pd.DataFrame) -> int:
 
 
 # ---------------------------------------------------------------------------
-# New-business definitions (Ex 1A). PRIMARY = nb_sales_led (Def1), carried through
-# Ex 1-3. nb_board (Def0) is the as-reported comparison; nb_land (Def2) is a sensitivity.
+# New-business candidate definitions (Ex 1A). PENDING Matt's choice of primary.
 # Each returns closed rows only, with a boolean 'won' column.
 # ---------------------------------------------------------------------------
 
@@ -87,9 +81,6 @@ def nb_sales_led(df: pd.DataFrame) -> pd.DataFrame:
         & df["Loss Reason"].ne("Duplicate")
     ]
     return _closed(d)
-
-
-nb_primary = nb_sales_led
 
 
 def nb_land(df: pd.DataFrame) -> pd.DataFrame:

@@ -71,6 +71,7 @@ Panel: 20 min presenting Ex 3, then 25 min live pressure test (the heaviest weig
 - `outputs/` — CSVs feeding the Google Sheet, the commentary markdown, and the Ex 3 memo/deck.
 - `AI_LOG.md` — append an entry after each working session: the prompt (paraphrased), what the AI produced, and what Matt checked or overrode.
 - `TIME_LOG.md` — running time per exercise against the budget.
+- `HYGIENE_LOG.md` — running log of data problems and open questions (ID, evidence count, affected exercise, status OPEN/PROPOSED/RESOLVED/PARKED, treatment). Add new issues as they're found, update status when decided, and reference IDs in code comments where a treatment is applied.
 - Use Python 3 with pandas and openpyxl. Pin versions in `requirements.txt`.
 - Don't move or edit the original PDFs or the dataset.
 - Commit after each completed sub-question with a message naming it (e.g. "Ex1A: new-business definition + FY25/FY26 counts").
