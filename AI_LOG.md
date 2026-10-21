@@ -29,3 +29,8 @@ Tools: Claude (claude.ai project for setup, then Claude Code for analysis), Pyth
 - Prompt (paraphrased): create a Google Sheet copy of the dataset with a Team column next to Opportunity Owner, built from the owner/source analysis; create a Google Doc explaining the teams and the SME vs SMB label.
 - AI output: copied the existing converted sheet to "GTMO Take-Home Working Data". Added Data!B Team (VLOOKUP to Owner Teams). Owner Teams has per-owner COUNTIFS, the 80% thresholds as inputs, and a low-volume flag. Team Summary and Size Label Check are all live formulas, plus a Definitions tab. Created "GTMO Take-Home Working Notes" (Doc). Verified the sheet totals against pandas: teams 51/771, 14/330, 23/357; checks = 0; SME 77/77 Sales-sourced; 25 dual-label accounts.
 - What I checked / changed: _(Matt to fill)_
+
+### 2026-10-21 — Ex 1A win rate (Claude Code)
+- Prompt (paraphrased): use Def1 (sales-led) as the primary new-business definition; compute FY25/FY26 win rates under Def0/Def1/Def2 with a reconciliation and sensitivities; put live formulas in the working Google Sheet.
+- AI output: `analysis/03_ex1a_winrate.py`; Sheet tab "Ex1A Win Rate" (COUNTIFS on row-level flags Data!AS:AU), reconciled to Python on every cell. Def0 reproduces the board's 9.4% → 18.5%; Def1 is flat at 10.6% → 10.4%.
+- What I checked / changed: chose Def1; took the recommended defaults on H04/H05/H07 (no preference). _(Matt to add anything else he verified.)_

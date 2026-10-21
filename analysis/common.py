@@ -61,8 +61,11 @@ def check_calendar(df: pd.DataFrame) -> int:
 
 
 # ---------------------------------------------------------------------------
-# New-business candidate definitions (Ex 1A). PENDING Matt's choice of primary.
+# New-business definitions (Ex 1A). Def1 (nb_sales_led) is the primary, carried
+# through Ex 1-3 (decided 2026-10-21). Def0 is the as-reported comparison.
 # Each returns closed rows only, with a boolean 'won' column.
+# Treatments: H02 Ordered/Won and H04 GTM Ops Review excluded via Stage; H03 Duplicate
+# losses excluded; H05 stale FY26 opens excluded (sensitivity in 03); H07 Deal Type used.
 # ---------------------------------------------------------------------------
 
 def _closed(df: pd.DataFrame) -> pd.DataFrame:
@@ -93,6 +96,9 @@ def nb_land(df: pd.DataFrame) -> pd.DataFrame:
     """Def 2, new-logo land only: Def 1 restricted to Deal Type = Initial Deployment."""
     d = nb_sales_led(df)
     return d[d["Deal Type"] == "Initial Deployment"]
+
+
+nb_primary = nb_sales_led
 
 
 def renewals(df: pd.DataFrame) -> pd.DataFrame:
