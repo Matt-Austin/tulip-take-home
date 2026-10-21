@@ -24,3 +24,7 @@ python analysis/03_ex2_renewals.py
 ## Deliverables
 - Numbers workbook (Google Sheets): _link_
 - Ex 3 recommendation: _link_
+
+## Google working files
+- Sheet: [GTMO Take-Home Working Data](https://docs.google.com/spreadsheets/d/1nezwtwLtFvVRXEE9UzzYeQg3LzBX71IXHM5JnE0Iq9M/edit): dataset copy, Team column, Owner Teams / Team Summary / Size Label Check / Definitions tabs
+- Doc: [GTMO Take-Home Working Notes](https://docs.google.com/document/d/1CSJe3VdwCZeAak1_I5LgZ5FQjp9wKI_zqR7nijfm-fA/edit): explainers and open questions
