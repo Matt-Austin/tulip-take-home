@@ -34,3 +34,8 @@ Tools: Claude (claude.ai project for setup, then Claude Code for analysis), Pyth
 - Prompt (paraphrased): use Def1 (sales-led) as the primary new-business definition; compute FY25/FY26 win rates under Def0/Def1/Def2 with a reconciliation and sensitivities; put live formulas in the working Google Sheet.
 - AI output: `analysis/03_ex1a_winrate.py`; Sheet tab "Ex1A Win Rate" (COUNTIFS on row-level flags Data!AS:AU), reconciled to Python on every cell. Def0 reproduces the board's 9.4% → 18.5%; Def1 is flat at 10.6% → 10.4%.
 - What I checked / changed: chose Def1; took the recommended defaults on H04/H05/H07 (no preference). _(Matt to add anything else he verified.)_
+
+### 2026-10-22 — Ex 1A board backtest (Claude Code)
+- Prompt (paraphrased): backtest how the board's "~9% FY25 → ~19% FY26" new-business win rate was calculated.
+- AI output: `analysis/04_board_backtest.py` → `outputs/04_board_backtest.csv`. Tested 10 candidate populations × 2 year bases (Close FY, Created FY). **The backtest found exactly one definition that reproduces the board's 9% to 19%: every New Opportunity row marked Won or Lost, by Close FY (9.4% to 18.5%; 25/240 FY25, 36/159 FY26).** The next-closest candidate is more than 9 points off in total. Inside that population, 19 of the 36 FY26 wins are admin stages (18 `Ordered / Won`, 1 `GTM Ops Review`). Remove those and FY26 is 17/176 = 9.7%.
+- What I checked / changed: accepted. Left uncommitted working-tree changes (which undo fd4d271) untouched, by choice.
