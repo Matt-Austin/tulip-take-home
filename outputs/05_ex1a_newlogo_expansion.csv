@@ -1,0 +1,7 @@
+population,FY25 won,FY25 lost,FY25 win %,FY26 won,FY26 lost,FY26 win %,change (pts),p (FY25 = FY26)
+Board (as reported): all New Opportunity Won/Lost,25,240,9.4,36,159,18.5,9.1,0.01
+New Logo: Initial Deployment + flag New,14,187,7.0,11,124,8.1,1.1,0.68
+Expansion: Expansion + flag Existing,10,15,40.0,6,15,28.6,-11.4,0.54
+"Sensitivity, New Logo on Deal Type only",15,193,7.2,11,127,8.0,0.8,0.84
+"Sensitivity, Expansion on Deal Type only",10,17,37.0,6,20,23.1,-13.9,0.37
+"Sensitivity, Expansion incl. 18 Ordered / Won rows",10,15,40.0,24,15,61.5,21.5,0.13
