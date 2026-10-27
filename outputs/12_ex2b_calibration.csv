@@ -1,0 +1,5 @@
+cell,records,churned,rate,low,high
+Util <0.33 / no text risk,20,0,0.0,0.0,0.1391
+Util <0.33 / text risk,102,74,0.7255,0.6435,0.7973
+Util >=0.33 / no text risk,197,0,0.0,0.0,0.0151
+Util >=0.33 / text risk,29,13,0.4483,0.2893,0.6156

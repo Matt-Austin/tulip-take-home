@@ -44,3 +44,8 @@ Tools: Claude (claude.ai project for setup, then Claude Code for analysis), Pyth
 - Prompt (paraphrased): compute FY26 logo and ARR churn from the renewal cohort; bring hygiene items H15, H21, H23, H24, H30 for decisions first.
 - AI output: sized each item; H23 and H24 fall in FY27 and don't touch FY26. `analysis/11_ex2a_baseline.py`: logo churn 25.1% (77/307 accounts), ARR churn 16.2% ($2.13M / $13.15M Renewal ARR), with sensitivities and a quarterly split.
 - What I decided: H15 Renewal ARR as the ARR basis; H21 logo = account, churned only if every FY26 record churned; open renewals excluded with a sensitivity (17.7% if all churn). HYGIENE_LOG.md not edited because it has uncommitted changes I asked to keep.
+
+### 2026-10-27 — Ex 2B FY27 forecast (Claude Code)
+- Prompt (paraphrased): FY27 low/medium/high churn ARR by quarter, checked against FY26; bring H23/H24 and method choices first.
+- AI output: keyword text categorizer (`analysis/text_categories.py`, written from every distinct note and Gong phrase on renewals); `analysis/12_ex2b_forecast.py`. Medium $4.61M (24.3%), low $3.61M (19.0%), high $5.74M (30.3%) vs FY26 16.2%. Driver: 52% of open FY27 ARR has risk text vs 34% in FY26; Q4 at 44%; Antares Metals $1.9M is the largest swing.
+- What I decided: medium = utilization (<0.33) x text-risk cells calibrated on FY26; low/high = 90% Clopper-Pearson range; Health excluded (H20); Underwood Dynamics counted renewed (H24); Brightline Holdings counted churned (H23).
