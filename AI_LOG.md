@@ -49,3 +49,8 @@ Tools: Claude (claude.ai project for setup, then Claude Code for analysis), Pyth
 - Prompt (paraphrased): FY27 low/medium/high churn ARR by quarter, checked against FY26; bring H23/H24 and method choices first.
 - AI output: keyword text categorizer (`analysis/text_categories.py`, written from every distinct note and Gong phrase on renewals); `analysis/12_ex2b_forecast.py`. Medium $4.61M (24.3%), low $3.61M (19.0%), high $5.74M (30.3%) vs FY26 16.2%. Driver: 52% of open FY27 ARR has risk text vs 34% in FY26; Q4 at 44%; Antares Metals $1.9M is the largest swing.
 - What I decided: medium = utilization (<0.33) x text-risk cells calibrated on FY26; low/high = 90% Clopper-Pearson range; Health excluded (H20); Underwood Dynamics counted renewed (H24); Brightline Holdings counted churned (H23).
+
+### 2026-10-27 — Review of Ex 1–2 and fixes (Claude Code)
+- Prompt (paraphrased): re-run every component with everything learned; then apply all recommended corrections and improvements.
+- AI output: logo churn 25.1% -> 24.1% (accounts with an FY27 renewal aren't churned); text-rule fixes (stale-flag notes override risk words; M&A and ROI phrasing); explicit-intent tier in 2B (FY27 medium 24.3% -> 18.4%); definitions centralised in common.py (Ex 1 outputs unchanged); one-page ex1/ex2 commentaries with detail in outputs/workings; Sheet tabs Ex1A, Ex1B, Ex1C, Ex2A, Ex2E, Ex2F live formulas and Ex2B values, all reconciled to Python.
+- What I checked / changed: approved all recommendations. Time log to follow.
