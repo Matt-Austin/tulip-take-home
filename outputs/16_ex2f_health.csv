@@ -1,0 +1,4 @@
+Health,records,churned,churn %,records with risk text,churned without risk text
+At-Risk,36,0,0.0,23,0
+Critical,87,82,94.3,84,0
+Healthy,225,5,2.2,24,0
