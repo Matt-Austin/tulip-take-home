@@ -46,7 +46,7 @@ The FY27 medium is close to FY26 for two offsetting reasons. More of the FY27 bo
 
 ## Where the model is weakest
 
-**Q4, and renewals with risk language but healthy utilization.** That cell holds 32% of open FY27 ARR, including Antares Metals, and its 25% rate rests on 20 FY26 records (90% range 10% to 46%). Q4 renewals are also furthest from the snapshot. A note written 8 to 12 months before the renewal date is less likely to describe the outcome than the notes on FY26's closed records, which may have been written close to the decision. Antares alone moves the FY27 total by ±$0.4M across that range.
+**Q4, and renewals with risk language but healthy utilization.** That cell holds 32% of open FY27 ARR, including Antares Metals, and its 25% rate rests on 20 FY26 records (90% range 10% to 46%). Q4 renewals are also furthest from the snapshot. A note written 8 to 12 months before the renewal date is less likely to describe the outcome than the notes on FY26's closed records, which may have been written close to the decision. Across that range Antares alone moves the FY27 total by $0.28M down to $0.39M up.
 
 ---
 Source: `analysis/12_ex2b_forecast.py` (uses `analysis/text_categories.py`) → `outputs/12_ex2b_calibration.csv`, `12_ex2b_quarterly.csv`, `12_ex2b_mix_vs_fy26.csv`, `12_ex2b_swing_accounts.csv`.
