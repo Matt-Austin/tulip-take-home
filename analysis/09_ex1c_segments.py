@@ -11,16 +11,14 @@ from math import comb
 
 import pandas as pd
 
-from common import OUT, PLAN_WIN_RATE, RT_NEW, load
+from common import OUT, PLAN_WIN_RATE, load, net_new
 
 pd.set_option("display.width", 250)
 TIERS = ["SME", "MM", "ENT", "Unknown"]
 
 df = load()
-nn = df[df["Opportunity Record Type"].eq(RT_NEW) & df["Deal Type"].eq("Initial Deployment")
-        & df["New Logo vs. Existing"].eq("New") & df["Stage"].isin(["Closed Won", "Closed Lost"])
-        & df["Loss Reason"].ne("Duplicate") & df["Close FY"].isin([2025, 2026])].copy()
-nn["won"] = nn["Won/Lost"].eq("Won")
+nn = net_new(df)
+nn = nn[nn["Close FY"].isin([2025, 2026])].copy()
 
 
 def fisher_two_sided(w1, n1, w2, n2):

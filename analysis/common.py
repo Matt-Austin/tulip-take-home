@@ -61,12 +61,42 @@ def check_calendar(df: pd.DataFrame) -> int:
 
 
 # ---------------------------------------------------------------------------
-# New-business definitions (Ex 1A). Def1 (nb_sales_led) is the primary, carried
-# through Ex 1-3 (decided 2026-10-21). Def0 is the as-reported comparison.
+# New-business definitions (Ex 1). PRIMARY = net_new (decided 2026-10-27).
+# nb_board is the as-reported comparison; nb_sales_led and nb_land are alternatives.
 # Each returns closed rows only, with a boolean 'won' column.
-# Treatments: H02 Ordered/Won and H04 GTM Ops Review excluded via Stage; H03 Duplicate
-# losses excluded; H05 stale FY26 opens excluded (sensitivity in 03); H07 Deal Type used.
+# Treatments: H02 Ordered / Won and H04 GTM Ops Review excluded via Stage; H03 Duplicate
+# losses excluded; H05 stale opens excluded (sensitivity in 07 / 10); H07 Deal Type and the
+# New Logo flag must agree.
 # ---------------------------------------------------------------------------
+
+SALES_STAGES = [NB_WON_STAGE, NB_LOST_STAGE]
+LOW_UTIL = 0.33  # internal retention-risk threshold (data dictionary)
+
+
+def is_net_new_deal(df: pd.DataFrame) -> pd.Series:
+    """Row mask, any stage: a first-time sale to a company that isn't yet a customer."""
+    return (df["Opportunity Record Type"].eq(RT_NEW) & df["Deal Type"].eq("Initial Deployment")
+            & df["New Logo vs. Existing"].eq("New"))
+
+
+def is_expansion_deal(df: pd.DataFrame) -> pd.Series:
+    """Row mask, any stage: a sales-led expansion at an existing customer."""
+    return (df["Opportunity Record Type"].eq(RT_NEW) & df["Deal Type"].eq("Expansion")
+            & df["New Logo vs. Existing"].eq("Existing"))
+
+
+def _sales_closed(df: pd.DataFrame) -> pd.Series:
+    return df["Stage"].isin(SALES_STAGES) & df["Loss Reason"].ne("Duplicate")
+
+
+def net_new(df: pd.DataFrame) -> pd.DataFrame:
+    """PRIMARY (Ex 1-3): net-new client deals closed through the sales stages."""
+    return _closed(df[is_net_new_deal(df) & _sales_closed(df)])
+
+
+def expansion(df: pd.DataFrame) -> pd.DataFrame:
+    """Expansion deals closed through the sales stages, reported beside net-new."""
+    return _closed(df[is_expansion_deal(df) & _sales_closed(df)])
 
 def _closed(df: pd.DataFrame) -> pd.DataFrame:
     out = df[df["Won/Lost"].isin(["Won", "Lost"])].copy()
@@ -98,8 +128,11 @@ def nb_land(df: pd.DataFrame) -> pd.DataFrame:
     return d[d["Deal Type"] == "Initial Deployment"]
 
 
-nb_primary = nb_sales_led
-
-
 def renewals(df: pd.DataFrame) -> pd.DataFrame:
     return df[df["Opportunity Record Type"] == RT_RENEWAL]
+
+
+def renewal_cohort(df: pd.DataFrame, fy: int) -> pd.DataFrame:
+    """Ex 2 cohort: renewal records closing in fiscal year fy. ARR basis is Renewal ARR (H15)."""
+    r = renewals(df)
+    return r[r["Close FY"].eq(fy)]

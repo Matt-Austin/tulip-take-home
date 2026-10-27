@@ -4,9 +4,10 @@ Cohort = Subscription Renewals with Close FY = 2027, Renewal ARR basis (H15).
 Already closed in FY27 (by the ~1 May 2026 snapshot): actual outcome.
   H24 Underwood Dynamics ($648K, GTM Ops Review, marked Won) = renewed.
   H23 Brightline Holdings ($29K, Deal Type mislabelled) = churned.
-Still Open: churn probability = FY26 churn rate of its risk cell, where the cells are
-  utilization below 0.33 (internal retention-risk threshold) x text risk (any risk category in the
-  CSM Health Note or Gong highlight, text_categories.py). Health is not used (H20).
+Still Open: churn probability = FY26 churn rate of its risk cell. Text stating explicit churn
+  intent is its own cell; every other renewal falls in utilization below 0.33 (internal
+  retention-risk threshold) x text risk (any other risk category in the CSM Health Note or
+  Gong highlight, text_categories.py). Health is not used (H20).
   Open rows that duplicate a closed record for the same account within 60 days are dropped (H30).
 Medium = cell point rates. Low / high = cell rates at the lower / upper end of a 90% Clopper-Pearson
 interval on the FY26 counts. Writes outputs/12_ex2b_*.csv.
@@ -15,7 +16,7 @@ from math import comb
 
 import pandas as pd
 
-from common import OUT, load, renewals
+from common import LOW_UTIL, OUT, load, renewals
 from text_categories import add_text_signals
 
 pd.set_option("display.width", 250)
@@ -42,10 +43,12 @@ def clopper_pearson(k, n, conf=0.90):
 
 df = load()
 r = add_text_signals(renewals(df))
-r["low util"] = r["Utilization - 1 Month Ago"] < 0.33
+r["low util"] = r["Utilization - 1 Month Ago"] < LOW_UTIL
 r["text risk"] = r["text_signal"].eq("Risk")
 r["cell"] = r["low util"].map({True: "Util <0.33", False: "Util >=0.33"}) + " / " + \
             r["text risk"].map({True: "text risk", False: "no text risk"})
+# Customer says outright they are leaving: its own tier, whatever the utilization
+r.loc[r["text_cats"].map(lambda c: "Explicit churn intent" in c), "cell"] = "Explicit churn intent"
 
 # Calibration: FY26 churn rate by cell, with 90% interval
 fy26 = r[r["Close FY"].eq(2026) & r["Won/Lost"].isin(["Won", "Lost"])]

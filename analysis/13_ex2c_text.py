@@ -6,14 +6,14 @@ Writes outputs/13_ex2c_categories.csv and outputs/13_ex2c_conflicts.csv.
 """
 import pandas as pd
 
-from common import load, OUT, renewals
+from common import LOW_UTIL, OUT, load, renewals
 from text_categories import RISK, add_text_signals
 
 pd.set_option("display.width", 250)
 
 df = load()
 r = add_text_signals(renewals(df))
-r["low util"] = r["Utilization - 1 Month Ago"] < 0.33
+r["low util"] = r["Utilization - 1 Month Ago"] < LOW_UTIL
 r["churned"] = r["Won/Lost"].eq("Lost")
 fy26 = r[r["Close FY"].eq(2026) & r["Won/Lost"].isin(["Won", "Lost"])]
 fy27 = r[r["Close FY"].eq(2027)]

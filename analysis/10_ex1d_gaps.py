@@ -7,16 +7,15 @@ Writes outputs/10_ex1d_loss_reasons.csv and outputs/10_ex1d_source_outcomes.csv.
 """
 import pandas as pd
 
-from common import OUT, RT_NEW, load
+from common import OUT, is_net_new_deal, load, net_new
 
 pd.set_option("display.width", 250)
 SNAPSHOT = pd.Timestamp("2026-05-01")
 
 df = load()
-net_new_any = (df["Opportunity Record Type"].eq(RT_NEW) & df["Deal Type"].eq("Initial Deployment")
-               & df["New Logo vs. Existing"].eq("New"))
-nn = df[net_new_any & df["Stage"].isin(["Closed Won", "Closed Lost"]) & df["Loss Reason"].ne("Duplicate")
-        & df["Close FY"].isin([2025, 2026])]
+net_new_any = is_net_new_deal(df)
+nn = net_new(df)
+nn = nn[nn["Close FY"].isin([2025, 2026])]
 
 # Gap 1: FY26 net-new deals still Open although their close date has passed
 stale = df[net_new_any & df["Won/Lost"].eq("Open") & df["Close FY"].eq(2026)]

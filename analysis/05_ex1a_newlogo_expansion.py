@@ -14,7 +14,7 @@ from math import comb
 
 import pandas as pd
 
-from common import OUT, RT_NEW, load, renewals
+from common import OUT, RT_NEW, expansion, load, net_new, renewals
 
 pd.set_option("display.width", 250)
 
@@ -28,8 +28,8 @@ deal, flag = df["Deal Type"], df["New Logo vs. Existing"]
 pops = {
     "Board (as reported): all New Opportunity Won/Lost": df["Opportunity Record Type"].eq(RT_NEW)
         & df["Won/Lost"].isin(["Won", "Lost"]),
-    "New Logo: Initial Deployment + flag New": base & deal.eq("Initial Deployment") & flag.eq("New"),
-    "Expansion: Expansion + flag Existing": base & deal.eq("Expansion") & flag.eq("Existing"),
+    "New Logo: Initial Deployment + flag New": df.index.isin(net_new(df).index),
+    "Expansion: Expansion + flag Existing": df.index.isin(expansion(df).index),
     "Sensitivity, New Logo on Deal Type only": base & deal.eq("Initial Deployment"),
     "Sensitivity, Expansion on Deal Type only": base & deal.eq("Expansion"),
     "Sensitivity, Expansion incl. 18 Ordered / Won rows": df["Opportunity Record Type"].eq(RT_NEW)

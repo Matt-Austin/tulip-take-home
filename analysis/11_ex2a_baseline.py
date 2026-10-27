@@ -3,7 +3,8 @@
 Cohort = Subscription Renewals with Close FY = 2026 (renewal records start Feb 2025).
 Decisions (Matt, 2026-10-27):
   H15  ARR basis = Renewal ARR (annual amount up for renewal), not Total Booking.
-  H21  Logo = account. A logo churns when every one of its closed FY26 renewal records churned.
+  H21  Logo = account. A logo churns when every one of its closed FY26 renewal records churned
+       and it holds no FY27 renewal (3 accounts lost an FY26 subscription but kept another).
   H30  Rows still Open (19, all 90+ days past close) are excluded from the base; sensitivity shown.
        The one Open duplicate of a Won record (Forsythe Beverages) is excluded with them.
   H23/H24 rows close in FY27, so they don't touch this cohort.
@@ -11,23 +12,29 @@ Writes outputs/11_ex2a_baseline.csv and outputs/11_ex2a_by_quarter.csv.
 """
 import pandas as pd
 
-from common import OUT, load, renewals
+from common import OUT, load, renewal_cohort
 
 pd.set_option("display.width", 250)
 
 df = load()
-cohort = renewals(df)[lambda r: r["Close FY"].eq(2026)]
+cohort = renewal_cohort(df, 2026)
 closed = cohort[cohort["Won/Lost"].isin(["Won", "Lost"])]
 open_ = cohort[cohort["Won/Lost"].eq("Open")]
 lost = closed["Won/Lost"].eq("Lost")
 print(f"FY26 cohort: {len(cohort)} records | closed {len(closed)} (won {int((~lost).sum())}, lost {int(lost.sum())}) | open {len(open_)}")
 
 acct = closed.groupby("Account Name")["Won/Lost"].agg(lambda s: s.eq("Lost").mean())
-logos, churned_logos, partial = len(acct), int(acct.eq(1).sum()), int(acct.between(0, 1, inclusive="neither").sum())
+# An account that lost every FY26 renewal but still holds an FY27 renewal has not left (H21)
+still_customer = set(renewal_cohort(df, 2027)["Account Name"])
+lost_all = acct.eq(1)
+returned = sorted(acct[lost_all & acct.index.isin(still_customer)].index)
+logos, churned_logos = len(acct), int((lost_all & ~acct.index.isin(still_customer)).sum())
+partial = int(acct.between(0, 1, inclusive="neither").sum())
+print(f"Lost every FY26 renewal but hold an FY27 renewal (not churned logos): {returned}")
 arr_base, arr_lost = closed["Renewal ARR"].sum(), closed.loc[lost, "Renewal ARR"].sum()
 
 rows = [
-    {"measure": "Logo churn (primary): accounts fully churned / accounts", "churned": churned_logos, "base": logos},
+    {"measure": "Logo churn (primary): accounts that lost every renewal and hold none in FY27 / accounts", "churned": churned_logos, "base": logos},
     {"measure": "ARR churn (primary): Renewal ARR churned / Renewal ARR up for renewal", "churned": arr_lost, "base": arr_base},
     {"measure": "Sensitivity, logo: account churns if any record churned", "churned": int(acct.gt(0).sum()), "base": logos},
     {"measure": "Sensitivity, logo: renewal records", "churned": int(lost.sum()), "base": len(closed)},

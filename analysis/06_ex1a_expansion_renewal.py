@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 
 from common import OUT, RT_NEW, RT_RENEWAL, load, renewals
+from common import expansion as expansion_closed
 
 pd.set_option("display.width", 250)
 
@@ -44,9 +45,7 @@ up = er[er["license change"].eq("up")]
 print("\nLicense-up rows by outcome:")
 print(pd.crosstab(up["Close FY"], up["Won/Lost"]).to_string())
 
-expansion = (df["Opportunity Record Type"].eq(RT_NEW) & df["Stage"].isin(["Closed Won", "Closed Lost"])
-             & df["Loss Reason"].ne("Duplicate") & df["Deal Type"].eq("Expansion")
-             & df["New Logo vs. Existing"].eq("Existing"))
+expansion = pd.Series(df.index.isin(expansion_closed(df).index), index=df.index)
 variants = {
     "Expansion (05 definition)": expansion,
     "+ Expansion + Renewal with licenses up": expansion | df.index.isin(up.index),

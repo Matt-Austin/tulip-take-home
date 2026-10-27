@@ -5,7 +5,8 @@ outputs/07_ex1a_definitions.csv and outputs/07_ex1a_board_fy26_wins.csv.
 """
 import pandas as pd
 
-from common import OUT, RT_NEW, fiscal_year, load
+from common import OUT, RT_NEW, fiscal_year, is_net_new_deal, load, nb_sales_led
+from common import net_new as net_new_closed
 
 pd.set_option("display.width", 250)
 
@@ -13,12 +14,9 @@ df = load()
 df["Created FY"] = fiscal_year(df["Created Date"])
 won, lost, open_ = (df["Won/Lost"].eq(v) for v in ("Won", "Lost", "Open"))
 new_opp = df["Opportunity Record Type"].eq(RT_NEW)
-real = df["Stage"].isin(["Closed Won", "Closed Lost"]) & df["Loss Reason"].ne("Duplicate")
-init, expn = df["Deal Type"].eq("Initial Deployment"), df["Deal Type"].eq("Expansion")
-new_flag = df["New Logo vs. Existing"].eq("New")
-net_new = new_opp & init & new_flag & real
-sales_led = new_opp & (init | expn) & real
-stale = new_opp & init & new_flag & open_  # still Open with a close date in that FY
+net_new = df.index.isin(net_new_closed(df).index)
+sales_led = df.index.isin(nb_sales_led(df).index)
+stale = is_net_new_deal(df) & open_  # still Open with a close date in that FY
 
 definitions = [
     ("Board (as reported): all New Opportunity Won/Lost", won & new_opp, lost & new_opp, "Close FY"),

@@ -1,9 +1,9 @@
 conflict,FY26 records,FY26 churned,FY26 churn %,FY27 open records,FY27 open Renewal ARR
-"Text risk, utilization fine (>=0.33)",29,13,44.8,69,4901828
-"Low utilization (<0.33), no text risk",20,0,0.0,4,116435
+"Text risk, utilization fine (>=0.33)",28,13,46.4,69,4901828
+"Low utilization (<0.33), no text risk",21,0,0.0,4,116435
 "Health Healthy, text risk",24,5,20.8,25,1063890
-"Health Critical or At-Risk, no text risk",16,0,0.0,0,0
+"Health Critical or At-Risk, no text risk",18,0,0.0,0,0
 "Stage 1 At Risk, no text risk",0,0,,0,0
-CSM says earlier flag was stale,14,0,0.0,0,0
-"Note risk, Gong positive",9,6,66.7,14,351750
+CSM says earlier flag was stale,16,0,0.0,0,0
+"Note risk, Gong positive",7,6,85.7,14,351750
 "Gong risk, note not risk",0,0,,0,0

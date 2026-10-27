@@ -1,11 +1,11 @@
 Account Name,close_fq,Renewal ARR,Utilization - 1 Month Ago,cell,p medium,churn ARR medium,text_cats
-Antares Metals,4,1898743.28,0.34,Util >=0.33 / text risk,0.4482758620689655,851160.7806896552,"['Champion loss', 'Competitive displacement']"
-Summit Robotics,4,482725.93,0.47,Util >=0.33 / text risk,0.4482758620689655,216394.3824137931,['Competitive displacement']
-Silvermere Solutions,4,422262.5,0.1,Util <0.33 / text risk,0.7254901960784313,306347.3039215686,"['Budget pressure', 'Champion loss']"
-Briarstone & Co.,4,322745.5,0.24,Util <0.33 / text risk,0.7254901960784313,234148.69607843136,"['Adoption / value gap', 'Budget pressure']"
-Nettleby Aerospace,2,322565.64,0.34,Util >=0.33 / text risk,0.4482758620689655,144598.39034482758,"['Customer business change', 'M&A / ownership change']"
-"Hawkridge Co., Ltd.",2,257721.64,2.89,Util >=0.33 / text risk,0.4482758620689655,115530.3903448276,['Adoption / value gap']
-Thatcher Polymers,4,240347.25,0.13,Util <0.33 / text risk,0.7254901960784313,174369.57352941175,"['Adoption / value gap', 'Champion loss', 'Explicit churn intent']"
-Knollwood S.A.,4,235827.9,0.23,Util <0.33 / text risk,0.7254901960784313,171090.8294117647,"['Adoption / value gap', 'Competitive displacement']"
-Norwood Dynamics,3,164340.0,0.43,Util >=0.33 / text risk,0.4482758620689655,73669.6551724138,"['Adoption / value gap', 'M&A / ownership change']"
-Pendlewood Devices,4,150645.91,0.38,Util >=0.33 / text risk,0.4482758620689655,67530.9251724138,"['Budget pressure', 'Customer business change']"
+Antares Metals,4,1898743.28,0.34,Util >=0.33 / text risk,0.25,474685.82,"['Champion loss', 'Competitive displacement']"
+Summit Robotics,4,482725.93,0.47,Util >=0.33 / text risk,0.25,120681.4825,['Competitive displacement']
+Silvermere Solutions,4,422262.5,0.1,Util <0.33 / text risk,0.5272727272727272,222647.49999999997,"['Budget pressure', 'Champion loss']"
+Briarstone & Co.,4,322745.5,0.24,Util <0.33 / text risk,0.5272727272727272,170174.9,"['Adoption / value gap', 'Budget pressure']"
+Nettleby Aerospace,2,322565.64,0.34,Util >=0.33 / text risk,0.25,80641.41,"['Customer business change', 'M&A / ownership change']"
+"Hawkridge Co., Ltd.",2,257721.64,2.89,Util >=0.33 / text risk,0.25,64430.41,['Adoption / value gap']
+Thatcher Polymers,4,240347.25,0.13,Explicit churn intent,0.9814814814814815,235896.375,"['Adoption / value gap', 'Champion loss', 'Explicit churn intent']"
+Knollwood S.A.,4,235827.9,0.23,Util <0.33 / text risk,0.5272727272727272,124345.61999999998,"['Adoption / value gap', 'Competitive displacement']"
+Norwood Dynamics,3,164340.0,0.43,Util >=0.33 / text risk,0.25,41085.0,"['Adoption / value gap', 'M&A / ownership change']"
+Pendlewood Devices,4,150645.91,0.38,Util >=0.33 / text risk,0.25,37661.4775,"['Budget pressure', 'Customer business change']"

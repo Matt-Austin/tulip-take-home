@@ -1,5 +1,5 @@
 measure,churned,base,rate %
-Logo churn (primary): accounts fully churned / accounts,77.0,307.0,25.1
+Logo churn (primary): accounts that lost every renewal and hold none in FY27 / accounts,74.0,307.0,24.1
 ARR churn (primary): Renewal ARR churned / Renewal ARR up for renewal,2125163.6300000004,13151684.66,16.2
 "Sensitivity, logo: account churns if any record churned",86.0,307.0,28.0
 "Sensitivity, logo: renewal records",87.0,348.0,25.0

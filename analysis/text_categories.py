@@ -20,12 +20,13 @@ RISK = {
                        r"cut tooling spend|take 20% out|cutting any saas|budget i'd renew this out of doesn't exist|"
                        r"can't promise the budget|reviewing all (saas spend|subscriptions)|auditing every subscription|"
                        r"make it through the cuts|roi in writing|documented return|savings written down|quantified i can hand|"
-                       r"results i can point to|defend the spend|hard numbers|no new commitments",
+                       r"results i can point to|defend the spend|hard numbers|no new commitments|roi .{0,15}in writing",
     "Competitive displacement": r"competing (solution|platform)|different mes vendor|evaluating an alternative|pitch that overlaps|"
                                 r"other vendors is claiming|\[competitor\]|platform they already own|didn't make the cut|"
                                 r"mandated one platform|picked the incumbent|legacy vendor|their own platform|standardised elsewhere|"
                                 r"different stack|existing tooling|consolidate vendor stack",
-    "M&A / ownership change": r"acquired|acquisition|acquiring|m&a|merger|new ownership|new owner|parent company|transaction|"
+    # "new owner has" (not "new owner"): "New owner is non-technical" is a champion change, not M&A
+    "M&A / ownership change": r"acquired|acquisition|acquiring|m&a|merger|new ownership|new owner has|parent company|transaction|"
                               r"deal closes|restructuring",
     "Adoption / value gap": r"pilot never went live|never really got it off the ground|never got past the first use case|pilot stalled|"
                             r"adoption pocketed|plateaued|unmet expectations|unresolved support tickets|never staffed|"
@@ -53,7 +54,7 @@ POSITIVE = (r"no issues|went well|budget approved|budget is locked|renewal looks
 STALE_FLAG = (r"assumed the worst|never in scope|inclined to discount|still bought in|resolved inside a week|"
               r"nothing about the deployment changed|no evaluation ever opened|does not touch it|historically these unstick|"
               r"adoption metrics never dipped|forwarded it to us unprompted|seasonal in prior years|still logging in daily|"
-              r"renewal is probably fine|she is not going anywhere")
+              r"renewal is probably fine|she is not going anywhere|acquirer runs no competing platform|stepped up cleanly")
 # One-off CSM notes that are genuinely two-sided
 UNCERTAIN = r"mixed signals|too early to call|hard to read|cannot guarantee the budget"
 
@@ -76,7 +77,8 @@ def add_text_signals(r: pd.DataFrame) -> pd.DataFrame:
     note = r["CSM Health Note"].fillna("")
     r["note_stale_flag"] = note.str.contains(_stale)
     r["note_uncertain"] = note.str.contains(_unc) & ~r["note_stale_flag"]
-    r["note_cats"] = r["CSM Health Note"].map(categorize)
+    # A note that says an earlier flag was stale is a de-escalation: its risk words don't count
+    r["note_cats"] = [[] if stale else categorize(t) for stale, t in zip(r["note_stale_flag"], r["CSM Health Note"])]
     r["gong_cats"] = r["Latest Gong Call Highlight"].map(categorize)
     r["text_cats"] = [sorted(set(a) | set(b)) for a, b in zip(r["note_cats"], r["gong_cats"])]
     note_pos = r["CSM Health Note"].fillna("").str.contains(_pos)
