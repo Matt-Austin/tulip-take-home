@@ -28,3 +28,11 @@ risk = fy26[fy26["text_signal"].eq("Risk")]
 print("Within risk-text renewals, churn by Health:", risk.groupby("Health")["churned"].agg(["sum", "size"]).to_dict("index"))
 o = r[r["Close FY"].eq(2027) & r["Won/Lost"].eq("Open")]
 print(f"FY27 open renewals by Health: {o['Health'].value_counts().to_dict()}")
+
+# Runner-up: AE Probability / Forecast Category
+print("\nFY26 closed, Forecast Category x outcome:\n" + pd.crosstab(fy26["Forecast Category"], fy26["Won/Lost"]).to_string())
+open_renewal = o[o["Stage"].eq("2 Open Renewal")]
+at75 = open_renewal["Probability (%)"].eq(75) & open_renewal["Forecast Category"].eq("Best Case")
+risk_open = o[o["text_signal"].eq("Risk")]
+print(f"FY27 at 2 Open Renewal: {int(at75.sum())} of {len(open_renewal)} at 75% Best Case;"
+      f" open renewals with risk text: {len(risk_open)}, of which Best Case {int(risk_open['Forecast Category'].eq('Best Case').sum())}")
