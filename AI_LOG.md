@@ -39,3 +39,8 @@ Tools: Claude (claude.ai project for setup, then Claude Code for analysis), Pyth
 - Prompt (paraphrased): backtest how the board's "~9% FY25 → ~19% FY26" new-business win rate was calculated.
 - AI output: `analysis/04_board_backtest.py` → `outputs/04_board_backtest.csv`. Tested 10 candidate populations × 2 year bases (Close FY, Created FY). **The backtest found exactly one definition that reproduces the board's 9% to 19%: every New Opportunity row marked Won or Lost, by Close FY (9.4% to 18.5%; 25/240 FY25, 36/159 FY26).** The next-closest candidate is more than 9 points off in total. Inside that population, 19 of the 36 FY26 wins are admin stages (18 `Ordered / Won`, 1 `GTM Ops Review`). Remove those and FY26 is 17/176 = 9.7%.
 - What I checked / changed: accepted. Left uncommitted working-tree changes (which undo fd4d271) untouched, by choice.
+
+### 2026-10-27 — Ex 2A FY26 baseline (Claude Code)
+- Prompt (paraphrased): compute FY26 logo and ARR churn from the renewal cohort; bring hygiene items H15, H21, H23, H24, H30 for decisions first.
+- AI output: sized each item; H23 and H24 fall in FY27 and don't touch FY26. `analysis/11_ex2a_baseline.py`: logo churn 25.1% (77/307 accounts), ARR churn 16.2% ($2.13M / $13.15M Renewal ARR), with sensitivities and a quarterly split.
+- What I decided: H15 Renewal ARR as the ARR basis; H21 logo = account, churned only if every FY26 record churned; open renewals excluded with a sensitivity (17.7% if all churn). HYGIENE_LOG.md not edited because it has uncommitted changes I asked to keep.
