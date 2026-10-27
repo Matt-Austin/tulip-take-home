@@ -1,0 +1,83 @@
+Account Name,Opportunity Name,Deal Type,Won/Lost,close_fq,Sold Licenses,Utilization - 1 Month Ago,additional seats,price per seat,expansion ARR,Renewal ARR,Total Booking,text_signal,text_cats,pursue?,check overlap
+Larkspur Dynamics,Larkspur Dynamics Renewal and Expansion 2027,Renewal,Open,3,577,1.41,237,3478.5774696707103,824422.8603119584,2007139.2,3777081.0,Positive,[],Pursue,True
+"Hawkridge Co., Ltd.","Renewal Opportunity - Hawkridge Co., Ltd. - Aug 2026 to Jul 2027",Renewal,Open,2,108,2.89,205,2386.3114814814817,489193.85370370373,257721.64,257721.64,Risk,['Adoption / value gap'],Don't pursue: risk text,False
+Forsythe Metals,Forsythe Metals Renewal 2027,Renewal,Won,1,229,1.26,60,3787.5545851528386,227253.27510917032,867350.0,2602050.0,Positive,[],Pursue,False
+Delamere & Co.,Renewal Opportunity - Delamere & Co. - Jul 2026 to Jul 2027,Renewal,Open,2,114,1.32,37,3595.2978947368424,133026.02210526317,409863.96,409863.96,Positive,[],Pursue,False
+Iverson Precision,Renewal and Expansion Opportunity - Iverson Precision - Apr 2026 to Apr 2027,Expansion + Renewal,Open,1,333,1.15,50,2621.7905405405404,131089.527027027,873056.25,960361.88,Positive,[],Pursue,False
+Redwood Precision,Renewal + Expansion - Redwood Precision - Nov 2027,Expansion + Renewal,Open,4,25,2.3,33,3729.4224,123070.9392,93235.56,406686.72,Risk,"['Competitive displacement', 'Explicit churn intent', 'M&A / ownership change']",Don't pursue: risk text,False
+Thornton Instruments,Renewal Opportunity - Thornton Instruments,Renewal,Open,4,28,2.09,31,3521.5714285714284,109168.71428571428,98604.0,98604.0,Risk,"['Adoption / value gap', 'Competitive displacement']",Don't pursue: risk text,False
+Yarrowfield Biosciences,Renewal Opportunity Yarrowfield Biosciences 2026 - 2027,Renewal,Won,1,44,1.37,17,3003.4795454545456,51059.152272727275,132153.1,132153.01,Positive,[],Pursue,False
+Coppermill Systems,Coppermill Systems Renewal 2027,Renewal,Open,2,51,1.18,10,3803.540196078431,38035.40196078431,193980.55,193980.55,Positive,[],Pursue,False
+Marigold Sciences,Marigold Sciences Renewal and Expansion 2027,Expansion + Renewal,Won,1,33,1.41,14,2420.8333333333335,33891.66666666667,79887.5,274152.02,Positive,[],Pursue,True
+Endeavour Medical,Renewal Opportunity - Endeavour Medical - Apr 2026 to Apr 2027,Renewal,Won,1,51,1.2,11,2953.823529411765,32492.058823529413,150645.0,143797.5,Positive,[],Pursue,False
+Magnolia Defense,Renewal Opportunity - Magnolia Defense - Feb 2026 to Feb 2027,Renewal,Won,1,23,1.36,9,3572.608695652174,32153.478260869568,82170.0,82170.0,Positive,[],Pursue,False
+Hawthorne Beverages,Renewal Opportunity - Hawthorne Beverages - Jun 2026 - May 2027,Renewal,Open,2,14,1.27,4,3687.8678571428572,14751.471428571429,51630.15,103260.3,Positive,[],Pursue,False
+Larkspur Microsystems,Renewal Opportunity - Larkspur Microsystems - Dec 2026 to Dec 2027,Renewal,Open,4,19,1.3,6,2402.6315789473683,14415.78947368421,45650.0,45650.0,Positive,[],Pursue,False
+Ivystead Dynamics,Renewal Opportunity - Ivystead Dynamics - Aug 26,Renewal,Open,3,2,2.91,4,3549.745,14198.98,7099.49,7099.49,Positive,[],Pursue,False
+Vermillion Bioworks,Renewal Opportunity - Vermillion Bioworks - Nov 26,Renewal,Open,4,13,1.42,6,2224.9107692307693,13349.464615384615,28923.84,28923.84,Positive,[],Pursue,False
+Garrick Chemicals,Garrick Chemicals Renewal and Expansion 2027,Expansion + Renewal,Lost,1,4,1.93,4,3012.9,12051.6,12051.6,13256.76,Risk,"['Budget pressure', 'Customer business change', 'Explicit churn intent']",Don't pursue: churned,False
+Drumlin Works,Drumlin Works - renewal Nov 2027,Renewal,Open,4,12,1.34,5,2282.5,11412.5,27390.0,27390.0,Positive,[],Pursue,False
+Granite Pharma,Renewal Opportunity Granite Pharma 2026 - 2027,Renewal,Open,3,8,1.29,3,3389.5125,10168.537499999999,27116.1,27116.1,Positive,[],Pursue,False
+Westport Energy,Renewal Opportunity - Westport Energy - Mar 2026 - Mar 2027,Renewal,Won,1,2,1.82,2,4930.2,9860.4,9860.4,4930.2,Positive,[],Pursue,False
+Ivystead Dynamics,Renewal Opportunity - Ivystead Dynamics - May 26,Renewal,Open,2,3,1.95,3,2678.133333333333,8034.4,8034.4,8034.4,Positive,[],Pursue,False
+Vanguard Materials,Vanguard Materials Renewal and Expansion 2027,Expansion + Renewal,Open,2,13,1.2,3,2595.729230769231,7787.1876923076925,33744.48,37118.93,Positive,[],Pursue,False
+Tidewater Biosciences,Renewal Opportunity - Tidewater Biosciences - Jun 2026 to Jun 2027,Renewal,Open,2,6,1.21,2,3868.838333333333,7737.676666666666,23213.03,23213.03,Positive,[],Pursue,False
+Maple AG,Renewal Opportunity - Maple AG - Aug 2026 to Aug 2027,Renewal,Open,3,6,1.2,2,3652.0,7304.0,21912.0,21912.0,Positive,[],Pursue,False
+Ravenscroft Beverages,Renewal Opportunity - Ravenscroft Beverages - Sep 2026 to Sep 2027,Renewal,Open,3,5,1.36,2,3286.8,6573.6,16434.0,16434.0,Positive,[],Pursue,False
+Thatcher & Co.,Thatcher & Co. Renewal and Expansion 2027,Expansion + Renewal,Won,1,14,1.19,3,2112.942857142857,6338.828571428571,29581.2,59162.4,Positive,[],Pursue,True
+Sablefield Foods,Renewal Opportunity - Sablefield Foods - Mar 26,Renewal,Won,1,1,1.44,1,5478.0,5478.0,5478.0,5478.0,Positive,[],Pursue,False
+Jasperton Automotive,Renewal Opportunity - Jasperton Automotive,Renewal,Open,3,1,1.27,1,5478.0,5478.0,5478.0,5478.0,Positive,[],Pursue,False
+"Greystone Co., Ltd.","Greystone Co., Ltd. Renewal 2027",Renewal,Open,4,1,1.36,1,5478.0,5478.0,5478.0,5478.0,Positive,[],Pursue,False
+Lochstone Components,Renewal Opportunity - Lochstone Components - Nov 2026 to Oct 2027,Renewal,Open,3,1,2.79,2,2739.0,5478.0,2739.0,2739.0,Risk,"['Competitive displacement', 'Explicit churn intent', 'M&A / ownership change']",Don't pursue: risk text,False
+Cardinal Medical,Renewal Opportunity - Cardinal Medical - Jul 26,Renewal,Open,2,20,1.08,2,2483.3599999999997,4966.719999999999,49667.2,149001.6,Positive,[],Pursue,False
+Wycliffe Aerospace,Renewal Opportunity - Wycliffe Aerospace - Mar 2026 to Mar 2027,Renewal,Won,1,2,1.36,1,4793.25,4793.25,9586.5,9586.5,Positive,[],Pursue,False
+Helix Bioworks,Renewal Opportunity - Helix Bioworks - Oct 26,Renewal,Open,3,6,1.29,2,2355.54,4711.08,14133.24,14133.24,Positive,[],Pursue,False
+Larkspur Aerospace,Renewal Opportunity - Larkspur Aerospace - Feb 26,Renewal,Open,1,1,1.14,1,4382.4,4382.4,4382.4,5478.0,Positive,[],Pursue,False
+"Wycliffe Co., Ltd.","Renewal + Expansion - Wycliffe Co., Ltd. - Mar 2027",Renewal,Won,1,1,1.01,1,4382.4,4382.4,4382.4,4601.52,Positive,[],Pursue,False
+Tallgrass Holdings Inc.,Renewal Opportunity - Tallgrass Holdings Inc. - Dec 26,Renewal,Open,4,1,1.26,1,4108.5,4108.5,4108.5,4108.5,Positive,[],Pursue,False
+Farnsworth Labs,Renewal Opportunity - Farnsworth Labs - Dec 2026 to Dec 2027,Renewal,Open,4,2,1.1,1,4097.545,4097.545,8195.09,8195.09,Positive,[],Pursue,False
+Delamere GmbH,Renewal and Expansion Opportunity - Delamere GmbH - Jul 2026 to Jul 2027,Expansion + Renewal,Open,2,3,1.23,1,3834.6,3834.6,11503.8,12654.18,Positive,[],Pursue,False
+Lochstone LLC,Renewal Opportunity - Lochstone LLC - Aug 2026 - Aug 2027,Renewal,Open,3,8,1.06,1,3594.9375,3594.9375,28759.5,28759.5,Positive,[],Pursue,False
+Caraway Materials,Renewal Opportunity - Caraway Materials - Nov 2026 to Nov 2027,Renewal,Open,4,3,1.14,1,3561.9166666666665,3561.9166666666665,10685.75,0.0,Positive,[],Pursue,False
+Oakmoss LLC,Renewal Opportunity - Oakmoss LLC - Feb 2027 to Jan 2028,Renewal,Open,4,7,1.02,1,3521.5714285714284,3521.5714285714284,24651.0,49302.0,Positive,[],Pursue,False
+Ivystead Dynamics,Ivystead Dynamics Renewal and Expansion 2027,Expansion + Renewal,Won,1,3,1.25,1,3347.6666666666665,3347.6666666666665,10043.0,11640.75,Positive,[],Pursue,False
+Aurora Optics,Renewal Opportunity - Aurora Optics - Jun 2026 to Jun 2027,Renewal,Open,2,1,1.42,1,3286.8,3286.8,3286.8,3286.8,Positive,[],Pursue,False
+Larkspur Aerospace,Renewal Opportunity - Larkspur Aerospace,Renewal,Open,1,1,1.39,1,3286.8,3286.8,3286.8,3286.8,Positive,[],Pursue,False
+Winterly Robotics,Renewal Opportunity Winterly Robotics 2026 - 2027,Renewal,Open,1,1,1.07,1,3286.8,3286.8,3286.8,3286.8,Positive,[],Pursue,False
+Linwood Equipment,Renewal Opportunity Linwood Equipment 2026 - 2027,Renewal,Won,1,1,1.29,1,3286.8,3286.8,3286.8,5751.9,Positive,[],Pursue,False
+Thatcher Sciences,Renewal Opportunity - Thatcher Sciences - Oct 2026 - Oct 2027,Renewal,Open,3,15,1.06,1,3104.2,3104.2,46563.0,46563.0,Positive,[],Pursue,False
+Kingsbrook Holdings,Renewal Opportunity - Kingsbrook Holdings - Nov 26,Renewal,Open,4,1,1.79,1,3012.9,3012.9,3012.9,9038.7,Risk,"['Budget pressure', 'Competitive displacement']",Don't pursue: risk text,False
+Briarstone Bioworks,Renewal Opportunity - Briarstone Bioworks - Nov 26,Renewal,Open,4,14,1.05,1,2965.945714285714,2965.945714285714,41523.24,41523.24,Positive,[],Pursue,False
+"Vexley Co., Ltd.","Renewal Opportunity - Vexley Co., Ltd. - Dec 2026 to Dec 2027",Renewal,Open,4,1,1.34,1,2739.0,2739.0,2739.0,2739.0,Positive,[],Pursue,False
+Lochstone Aerospace,Renewal Opportunity - Lochstone Aerospace - Mar 2026 - Mar 2027,Renewal,Won,1,1,1.35,1,2739.0,2739.0,2739.0,2739.0,Positive,[],Pursue,False
+Drumlin Technologies,Renewal and Expansion Opportunity - Drumlin Technologies - Nov 2026 to Nov 2027,Expansion + Renewal,Open,4,7,1.04,1,2660.7428571428572,2660.7428571428572,18625.2,18625.2,Positive,[],Pursue,False
+Penwood Mechanical,Renewal Opportunity - Penwood Mechanical - Dec 2026 to Dec 2027,Renewal,Open,4,6,1.16,1,2282.5,2282.5,13695.0,13695.0,Positive,[],Pursue,False
+Sterling Holdings,Sterling Holdings Renewal 2028,Renewal,Open,4,10,1.1,1,2235.0240000000003,2235.0240000000003,22350.24,22350.24,Positive,[],Pursue,False
+Delamere Equipment,Renewal Opportunity - Delamere Equipment - Mar 26,Renewal,Won,1,1,1.15,1,2191.2,2191.2,2191.2,547.8,Positive,[],Pursue,False
+Ridgepoint Pharma,Renewal Opportunity - Ridgepoint Pharma - Jul 2026 - Jun 2027,Renewal,Open,2,1,1.31,1,2191.2,2191.2,2191.2,2191.2,Positive,[],Pursue,False
+Yarrowfield Sciences,Renewal Opportunity - Yarrowfield Sciences - May 2026 to May 2027,Renewal,Open,2,1,1.29,1,2191.2,2191.2,2191.2,2191.2,Positive,[],Pursue,False
+Glenmoor Precision,Renewal Opportunity - Glenmoor Precision - Nov 26,Renewal,Open,4,1,2.65,2,1095.6,2191.2,1095.6,1095.6,Risk,"['Adoption / value gap', 'Competitive displacement']",Don't pursue: risk text,False
+Westport Manufacturing,Renewal and Expansion Opportunity - Westport Manufacturing - Mar 2026 to Mar 2027,Renewal,Won,1,1,1.24,1,2191.2,2191.2,2191.2,2300.76,Positive,[],Pursue,False
+Granite Works,Renewal Opportunity - Granite Works - Mar 2026 to Mar 2027,Renewal,Won,1,1,2.2,2,1095.6,2191.2,1095.6,547.8,Positive,[],Pursue,False
+Magnolia International,Renewal Opportunity - Magnolia International - Jun 2026 - Jun 2027,Renewal,Open,2,1,1.4,1,1972.08,1972.08,1972.08,1972.08,Positive,[],Pursue,False
+Cobalt Power,Renewal Opportunity - Cobalt Power - Mar 2026 - Mar 2027,Renewal,Won,1,1,1.27,1,1314.72,1314.72,1314.72,1314.72,Positive,[],Pursue,False
+Forsythe Microsystems,Renewal Opportunity - Forsythe Microsystems - Jan 2027 to Dec 2027,Renewal,Open,4,1,1.78,1,1150.38,1150.38,1150.38,1150.38,Positive,[],Pursue,False
+Cardinal Materials,Renewal Opportunity Cardinal Materials 2027 - 2027,Renewal,Open,4,1,1.23,1,1150.38,1150.38,1150.38,1150.38,Positive,[],Pursue,False
+Garrick Works,Renewal Opportunity - Garrick Works - Jul 2026 to Jul 2027,Renewal,Open,2,1,1.07,1,1095.6,1095.6,1095.6,1095.6,Positive,[],Pursue,False
+Upton Optics,Renewal Opportunity - Upton Optics - Apr 2026 - Apr 2027,Renewal,Won,1,1,1.03,1,1095.6,1095.6,1095.6,1150.38,Positive,[],Pursue,False
+Jensley Beverages,Jensley Beverages - renewal Mar 2027,Renewal,Won,1,1,2.65,2,547.8,1095.6,547.8,547.8,Positive,[],Pursue,False
+Halberd Systems,Halberd Systems - renewal Nov 2027,Renewal,Open,4,1,2.19,2,547.8,1095.6,547.8,1095.6,Positive,[],Pursue,False
+Drumlin Mechanical,Renewal Opportunity - Drumlin Mechanical - Nov 26,Renewal,Open,4,1,1.28,1,1095.6,1095.6,1095.6,1095.6,Positive,[],Pursue,False
+Linwood Equipment,Renewal Opportunity - Linwood Equipment - May 2026 - May 2027,Renewal,Open,2,1,1.17,1,1095.6,1095.6,1095.6,1095.6,Positive,[],Pursue,False
+Hawthorne Microsystems,Renewal Opportunity - Hawthorne Microsystems - Mar 2026 - Mar 2027,Renewal,Won,1,1,1.1,1,1095.6,1095.6,1095.6,1095.6,Positive,[],Pursue,False
+Underwood Power,Renewal Opportunity - Underwood Power - Jul 2026 to Jul 2027,Renewal,Open,2,1,1.4,1,1095.6,1095.6,1095.6,1095.6,Positive,[],Pursue,False
+Halberd Automotive,Renewal Opportunity - Halberd Automotive,Renewal,Open,2,1,1.09,1,1095.6,1095.6,1095.6,1095.6,Positive,[],Pursue,False
+Merrick Solutions,Renewal Opportunity - Merrick Solutions - Mar 26,Renewal,Won,1,1,1.03,1,547.8,547.8,547.8,547.8,Positive,[],Pursue,False
+Nettleby Defense,Renewal Opportunity - Nettleby Defense - Mar 2026 - Mar 2027,Renewal,Won,1,1,1.29,1,547.8,547.8,547.8,547.8,Positive,[],Pursue,False
+Tallowood Systems,Renewal Opportunity - Tallowood Systems - Dec 26,Renewal,Open,4,1,1.11,1,547.8,547.8,547.8,547.8,Positive,[],Pursue,False
+Iverson LLC,Renewal Opportunity - Iverson LLC - Sep 26,Renewal,Open,3,1,1.11,1,547.8,547.8,547.8,547.8,Positive,[],Pursue,False
+Copperleaf Corp,Renewal Opportunity - Copperleaf Corp - Nov 2026 to Oct 2027,Renewal,Open,3,1,1.35,1,547.8,547.8,547.8,547.8,Positive,[],Pursue,False
+Pemberton Engineering,Renewal Opportunity - Pemberton Engineering - Oct 2026 to Sep 2027,Renewal,Open,3,1,1.24,1,547.8,547.8,547.8,547.8,Positive,[],Pursue,False
+Carrington Power,Renewal Opportunity Carrington Power 2026 - 2027,Renewal,Won,1,1,1.63,1,547.8,547.8,547.8,547.8,Positive,[],Pursue,False
+Coppermill Optics,Renewal Opportunity - Coppermill Optics - Jul 2026 to Jul 2027,Renewal,Open,2,1,1.37,1,547.8,547.8,547.8,547.8,Positive,[],Pursue,False
+Meridian Precision,Renewal Opportunity - Meridian Precision - Jan 2027 to Dec 2027,Renewal,Open,4,1,1.18,1,547.8,547.8,547.8,547.8,Positive,[],Pursue,False
