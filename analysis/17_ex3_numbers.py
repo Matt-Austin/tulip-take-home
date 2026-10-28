@@ -41,6 +41,9 @@ for role, g in r.groupby("role"):
     rows.append((f"FY26 ARR churn, {role}", g.loc[lost, "Renewal ARR"].sum() / g["Renewal ARR"].sum()))
     risk = g[g["text_signal"].eq("Risk")]
     rows.append((f"FY26 risk-text renewals churned, {role}", f"{int(risk['Won/Lost'].eq('Lost').sum())} of {len(risk)}"))
+    # Risk 1 tripwire baseline: share of at-risk Renewal ARR kept (ARR basis, not deal count)
+    rows.append((f"FY26 risk-text Renewal ARR retained, {role}",
+                 risk.loc[risk["Won/Lost"].eq("Won"), "Renewal ARR"].sum() / risk["Renewal ARR"].sum()))
     big = g[g["Renewal ARR"] >= 50000]
     rows.append((f"FY26 renewals >= $50K churned, {role}", f"{int(big['Won/Lost'].eq('Lost').sum())} of {len(big)}"))
 
@@ -57,6 +60,14 @@ rows += [("FY27 open renewals with risk text", len(o)), ("their Renewal ARR", o[
 big.sort_values("Renewal ARR", ascending=False)[
     ["Account Name", "close_fq", "Renewal ARR", "Utilization - 1 Month Ago", "role", "text_cats"]
 ].to_csv(OUT / "17_ex3_pod_accounts.csv", index=False)
+
+# Risk 1 sizing: ARR kept on the desk-owned pod accounts if pods keep at-risk ARR at the AE rate, not the desk rate
+desk_pod = big[big["role"].eq("Renewal desk")]
+rate = {row[0].rsplit(", ", 1)[1]: row[1] for row in rows if row[0].startswith("FY26 risk-text Renewal ARR retained")}
+lift = rate["AE (mixed source)"] - rate["Renewal desk"]
+rows += [("Desk-owned pod accounts", len(desk_pod)), ("their Renewal ARR (desk-owned pods)", desk_pod["Renewal ARR"].sum()),
+         ("ARR kept if pods retain at the AE rate, vs the desk rate", lift * desk_pod["Renewal ARR"].sum()),
+         ("  of which closing in Q4", lift * desk_pod.loc[desk_pod["close_fq"].eq(4), "Renewal ARR"].sum())]
 
 # Risk 2 control group: Q4 renewals with risk text that the pods don't cover (< $100K), at Ex2B cell rates
 with contextlib.redirect_stdout(io.StringIO()):

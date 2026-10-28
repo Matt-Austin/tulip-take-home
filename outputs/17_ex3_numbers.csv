@@ -7,12 +7,15 @@ Average new ARR per FY26 net-new win,143900.42
 "Mix-shift lever, ARR a year",57560.16800000001
 "FY26 ARR churn, AE (mixed source)",0.021456968644261325
 "FY26 risk-text renewals churned, AE (mixed source)",11 of 31
+"FY26 risk-text Renewal ARR retained, AE (mixed source)",0.8657146706183484
 "FY26 renewals >= $50K churned, AE (mixed source)",0 of 37
 "FY26 ARR churn, Eco/partner owner",0.06839924783302494
 "FY26 risk-text renewals churned, Eco/partner owner",14 of 23
+"FY26 risk-text Renewal ARR retained, Eco/partner owner",0.539951573849879
 "FY26 renewals >= $50K churned, Eco/partner owner",0 of 0
 "FY26 ARR churn, Renewal desk",0.44044468139733495
 "FY26 risk-text renewals churned, Renewal desk",62 of 75
+"FY26 risk-text Renewal ARR retained, Renewal desk",0.3575570627798484
 "FY26 renewals >= $50K churned, Renewal desk",9 of 18
 FY27 open renewals with risk text,143
 their Renewal ARR,7587923.83
@@ -22,6 +25,10 @@ their Renewal ARR,5361537.73
 of which owned by the renewal desk,14
 of which close in Q4,12
 their Renewal ARR,4406664.8100000005
+Desk-owned pod accounts,14
+their Renewal ARR (desk-owned pods),4697710.95
+"ARR kept if pods retain at the AE rate, vs the desk rate",2387177.558668727
+  of which closing in Q4,2119442.5068701208
 "Q4 risk-text renewals, pods",12
 their Renewal ARR (pods),4406664.8100000005
 modelled ARR loss % low (pods),23.56278288164478
