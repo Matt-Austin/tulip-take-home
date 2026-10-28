@@ -51,7 +51,7 @@ DOC = [
     ("E", "Evidence: A5, BDR 0 of 75. A1, the net-new rate for the board pack. A8, how risk text is read. Health 0 of 36 is from the Ex 2F workings (script 16); no appendix slide."),
 
     ("H2", "Slide 7. Effect on each function (2:15)"),
-    ("P", "Function by function. AEs: six senior AEs from the 51 lead the pods, about three accounts each. CSMs: each pod account's CSM joins its pod; the desk keeps renewals under $100K, so its load drops by fourteen accounts. SDRs: outbound stops, and they book value reviews for pod accounts instead."),
+    ("P", "Function by function. AEs: six senior AEs from the 51 lead the pods, about three accounts each. CSMs: each pod account's CSM joins its pod; the desk keeps renewals under $100K, so its load drops by fourteen accounts. BDRs: outbound stops, and they book value reviews for pod accounts instead. In a value review the AE and CSM meet the sponsor on value delivered, adoption gaps and the next team or site."),
     ("P", "Marketing: the outbound program line, meaning tools, data and sequences, pays for professional-services rescue work on pod accounts. The export has no spend data, so Finance sizes the line in week one; I'd rather say that than invent a number."),
     ("P", "Partner channel: from FY28 Q1, ecosystem-sourced deals get the acquisition budget, because they win 14% against 7% for marketing and 0% for outbound. One caveat: the file doesn't define the Eco source, so I'm treating it as partner-sourced and would confirm that first."),
     ("P", "Pricing: no list change. Expansion seats are quoted at each account's current per-seat price, the same method that sized the $2.5M expansion opportunity."),
