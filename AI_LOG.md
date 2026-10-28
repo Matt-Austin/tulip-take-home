@@ -64,3 +64,8 @@ Tools: Claude (claude.ai project for setup, then Claude Code for analysis), Pyth
 - Prompt (paraphrased): the Ex 3 deliverable is 6–8 slides; add the four missing slides.
 - AI output: four slides added after the agenda/section opener: why renewals (board number 2.2x with $3.5M vs $1.6M, BDR 0 of 75), who owns the renewal (desk 44% vs AE 2% ARR churn), where the money is (17 at-risk renewals of $100K+ = $5.4M; desk owns 14; 12 close in Q4 = $4.4M; top four listed), funding (no new hires; BDR program line moves to renewals). New figures scripted in analysis/17_ex3_numbers.py, account list in outputs/17_ex3_pod_accounts.csv.
 - What I checked / changed: asked for the four slides; layout checked from rendered thumbnails (table notes shortened to one category so the callout no longer covers row four).
+
+### 2026-10-28 — Tulip logo added to the deck (Claude Code)
+- Prompt (paraphrased): add the Tulip logo (image supplied) to the deck in appropriate places.
+- AI output: drew the mark from three native Slides shapes (a diamond plus two sheared rectangles, geometry measured from the supplied image) instead of uploading the image, so no Drive file or public link was needed. White on the six dark slides (large on the title, medium bottom-right on the three section dividers, small top-right on slides 2 and 8); navy (#0B1628) small top-right, aligned to the content margin, on the 16 light slides. Each mark is a group named `<slide>_logo`.
+- What I checked / changed: asked for the logo; renders checked on the title, a divider, slide 2 and a light content slide.
