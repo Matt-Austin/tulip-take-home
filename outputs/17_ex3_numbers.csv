@@ -40,4 +40,12 @@ modelled ARR loss % high (pods),53.91944553828393
 "modelled ARR loss % low (control, not in pods)",36.67220032173689
 "modelled ARR loss % medium (control, not in pods)",48.80828016523524
 "modelled ARR loss % high (control, not in pods)",62.4534315369208
+"Impact: FY27 Q4 ARR kept, low (vs forecast model)",1036160.8745146168
+"Impact: FY27 Q4 ARR kept, high (vs desk record)",2119442.5068701208
+FY26 desk ARR churn on renewals >= $50K,0.3612339631242012
+FY27 desk-owned renewal ARR >= $50K (FY28 proxy),7910311.45
+"Impact: FY28 ARR kept, low (half the desk-AE gap)",1428736.5773151233
+"Impact: FY28 ARR kept, high (AE rate)",2857473.1546302466
+Board number if $50K+ desk renewals ran at half the gap,0.30948132084898566
+Board number if $50K+ desk renewals ran at the AE rate,0.17851796030063652
 ARR kept if FY27 churn held at FY26 rate,426790.2991359993

@@ -82,6 +82,31 @@ for label, s in [("pods", q4[q4["Renewal ARR"] >= 100000]), ("control, not in po
     rows += [(f"modelled ARR loss % {case} ({label})", 100 * (s[f"p {case}"] * s["Renewal ARR"]).sum() / arr)
              for case in ("low", "medium", "high")]
 
+# Impact if the plan works (slide 7 band)
+# FY27 Q4 pods: ARR saved vs the forecast model (low) and vs the desk's own record (high, the Risk 1 sizing above)
+pod_fc = q4[q4["Renewal ARR"] >= 100000]
+ae_risk_loss = 1 - rate["AE (mixed source)"]
+q4_low = (pod_fc["p medium"] * pod_fc["Renewal ARR"]).sum() - ae_risk_loss * pod_fc["Renewal ARR"].sum()
+q4_high = lift * desk_pod["Renewal ARR"].sum()
+# FY28: desk renewals >= $50K move to AE + CSM; this year's desk book stands in for FY28's
+d26 = r[r["role"].eq("Renewal desk")]
+lost26 = d26["Won/Lost"].eq("Lost")
+big26 = d26["Renewal ARR"] >= 50000
+desk50_churn = d26.loc[lost26 & big26, "Renewal ARR"].sum() / d26.loc[big26, "Renewal ARR"].sum()
+f27 = renewal_cohort(df, 2027).join(roles, on="Opportunity Owner")
+desk50_fy27 = f27.loc[f27["role"].eq("Renewal desk") & (f27["Renewal ARR"] >= 50000), "Renewal ARR"].sum()
+# The board number re-run on the FY26 desk book with $50K+ renewals at the AE rate (0% lost) or half the gap
+small_lost = d26.loc[lost26 & ~big26, "Renewal ARR"].sum()
+big_lost = d26.loc[lost26 & big26, "Renewal ARR"].sum()
+rows += [("Impact: FY27 Q4 ARR kept, low (vs forecast model)", q4_low),
+         ("Impact: FY27 Q4 ARR kept, high (vs desk record)", q4_high),
+         ("FY26 desk ARR churn on renewals >= $50K", desk50_churn),
+         ("FY27 desk-owned renewal ARR >= $50K (FY28 proxy)", desk50_fy27),
+         ("Impact: FY28 ARR kept, low (half the desk-AE gap)", desk50_fy27 * desk50_churn / 2),
+         ("Impact: FY28 ARR kept, high (AE rate)", desk50_fy27 * desk50_churn),
+         ("Board number if $50K+ desk renewals ran at half the gap", (small_lost + big_lost / 2) / d26["Renewal ARR"].sum()),
+         ("Board number if $50K+ desk renewals ran at the AE rate", small_lost / d26["Renewal ARR"].sum())]
+
 # What holding FY27 churn at the FY26 rate is worth
 fy26_rate = 0.16159
 due = q.loc["FY27 total", "renewal ARR due"]

@@ -10,9 +10,9 @@ import sys
 DOC = [
     ("T", "Presentation narrative: GTM Operations take-home"),
     ("P", "Speaker script for the 20-minute presenting slot. The main deck is nine slides and answers the brief's four asks in order: the recommendation up top (slide 2), one number with its cut (slide 3), what stops and starts with functions, sequence and owners (slides 6 to 8), and two ways it could be wrong with tripwires (slide 9). Slides 4 and 5 say why this lever and where it lands. The Exercise 1 and 2 work sits in the appendix as A1 to A9 and is not presented; it is there for questions."),
-    ("P", "Run time: 19:00 on slides 1 to 9, leaving a minute of buffer. Evidence lines are for you, not to read aloud: they name the appendix slide and figure to jump to if the panel asks."),
+    ("P", "Run time: 19:15 on slides 1 to 9, leaving a minute of buffer. Evidence lines are for you, not to read aloud: they name the appendix slide and figure to jump to if the panel asks."),
 
-    ("H1", "Main deck (19:00)"),
+    ("H1", "Main deck (19:15)"),
     ("H2", "Slide 1. Title: Protect the renewal base (0:30)"),
     ("P", "Thanks for having me. One recommendation: protect the renewal base Tulip expands from, starting in November. The next eight slides are that recommendation: the number behind it, what stops and starts, who owns each piece, and how we'd know within a quarter if I'm wrong. The Exercise 1 and 2 work is in the appendix, and I'll point to it as I go."),
 
@@ -50,12 +50,13 @@ DOC = [
     ("P", "Then two starts. Save pods on the twelve Q4 renewals, live by 15 November, owned jointly by the VP of Sales and the VP of CS. And a weekly risk review of all 143 open renewals with risk language, $7.6M of ARR, run by RevOps and paid for from the outbound line."),
     ("E", ['[[A5|slide:sl_09]]: BDR 0 of 75 ([[Ex1D Gaps B6:D6|wb:116:B6:D6]])', '[[A1|slide:sl_05]]: the net-new rate for the board pack ([[Ex1A Win Rate H5|wb:105:H5]])', '[[A8|slide:sl_13]]: how risk text is read ([[Ex2C Text|wb:117:A5:G16]])', 'Health At-Risk churned 0 of 36: [[Ex2F Health A4:D8|wb:115:A4:D8]] (no appendix slide)', '143 open renewals with risk language, $7.6M: [[Ex3 Recommendation A16:B18|wb:119:A16:B18]]']),
 
-    ("H2", "Slide 7. Effect on each function (2:15)"),
+    ("H2", "Slide 7. Effect on each function (2:30)"),
     ("P", "Function by function. AEs: six senior AEs from the 51 lead the pods, two accounts each. CSMs: each pod account's CSM joins its pod; the desk keeps renewals under $100K, so its load drops by eleven accounts. BDRs: outbound stops, and they book value reviews for pod accounts instead. In a value review the AE and CSM meet the sponsor on value delivered, adoption gaps and the next team or site."),
     ("P", "Marketing: the outbound program line, meaning tools, data and sequences, pays for professional-services rescue work on pod accounts. The export has no spend data, so Finance sizes the line in week one; I'd rather say that than invent a number."),
     ("P", "Partner channel: from FY28 Q1, ecosystem-sourced deals get the acquisition budget, because they win 14% against 7% for marketing and 0% for outbound. One caveat: the file doesn't define the Eco source, so I'm treating it as partner-sourced and would confirm that first."),
     ("P", "Pricing: no list change. Expansion seats are quoted at each account's current per-seat price, the same method that sized the $2.5M expansion opportunity."),
-    ("E", ['[[A5|slide:sl_09]]: ecosystem 14%, marketing 7%, BDR 0% ([[Ex1D Gaps A6:E10|wb:116:A6:E10]])', '[[A6|slide:sl_11]]: expansion $2.5M, 826 seats, $1.8M pursuable ([[Ex2E Expansion A4:B10|wb:114:A4:B10]])', 'Eco meaning is open item H31 in [[HYGIENE_LOG.md|gh:HYGIENE_LOG.md]]']),
+    ("P", "What it's worth if it works. On last year's desk book, moving renewals of $50K or more to AE plus CSM coverage takes the 44% down to between 18% and 31%. In ARR, that's $1.0M to $2.1M kept in FY27 Q4 and $1.4M to $2.9M in FY28. The low ends compare against the forecast model, or half the desk-to-AE gap; the high ends against the desk's own record."),
+    ("E", ['[[A5|slide:sl_09]]: ecosystem 14%, marketing 7%, BDR 0% ([[Ex1D Gaps A6:E10|wb:116:A6:E10]])', '[[A6|slide:sl_11]]: expansion $2.5M, 826 seats, $1.8M pursuable ([[Ex2E Expansion A4:B10|wb:114:A4:B10]])', 'Eco meaning is open item H31 in [[HYGIENE_LOG.md|gh:HYGIENE_LOG.md]]', 'Impact figures and their basis: [[Ex3 Recommendation E19:G27|wb:119:E19:G27]]']),
 
     ("H2", "Slide 8. Sequence and owners (2:15)"),
     ("P", "The first 90 days are FY27 Q4. Pods live by 15 November, the budget moved, and a target of Q4 churn at or below $1.4M, our low case, against a medium forecast of $2.1M. Owners: VP Sales and VP CS."),
@@ -234,7 +235,7 @@ SOURCES = {  # slide id: (workbook tabs, code paths)
     "sl_3a": (["Ex2A Baseline", "Ex1A Win Rate", "Ex1D Gaps", "Ex1C Segments"], ["analysis/11_ex2a_baseline.py", "analysis/10_ex1d_gaps.py", "analysis/09_ex1c_segments.py"]),
     "sl_3c": (["Ex3 Recommendation", "Ex2B Forecast"], ["analysis/17_ex3_numbers.py", "analysis/12_ex2b_forecast.py"]),
     "sl_15": (["Ex1D Gaps", "Ex2F Health", "Ex1A Win Rate", "Ex3 Recommendation"], ["analysis/10_ex1d_gaps.py", "analysis/16_ex2f_health.py", "analysis/17_ex3_numbers.py"]),
-    "sl_3d": (["Ex1D Gaps", "Ex2E Expansion"], ["analysis/10_ex1d_gaps.py", "analysis/15_ex2e_expansion.py"]),
+    "sl_3d": (["Ex1D Gaps", "Ex2E Expansion", "Ex3 Recommendation"], ["analysis/10_ex1d_gaps.py", "analysis/15_ex2e_expansion.py", "analysis/17_ex3_numbers.py"]),
     "sl_16": (["Ex2B Forecast", "Ex2E Expansion", "Ex1C Segments"], ["analysis/12_ex2b_forecast.py", "analysis/15_ex2e_expansion.py"]),
     "sl_17": (["Ex3 Recommendation", "Ex2B Forecast"], ["analysis/17_ex3_numbers.py", "analysis/12_ex2b_forecast.py"]),
     "sl_14": (["Index"], ["README.md"]),

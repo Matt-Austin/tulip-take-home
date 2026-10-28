@@ -115,3 +115,8 @@ Tools: Claude (claude.ai project for setup, then Claude Code for analysis), Pyth
 - Prompt (paraphrased): what's the logo and ARR retention impact if the plan works; then fix the pod count.
 - AI output: found that 5 of the 17 at-risk renewals over $100K ($0.95M) close in FY27 Q2-Q3, before pods go live on 15 Nov, so only 12 ($4.41M, 11 desk-owned, $4.17M) can be worked. Script 17 now scopes pods to Q4 (CSV gains an "in pod" column); Risk 1 sizing becomes $2.12M on the 11 desk-owned pod accounts. Deck (slides 5, 6, 7, 8), speaker notes, narrative doc and source now say 12 pods / $4.4M; workbook Ex3 tab and Index updated. Impact estimate given in chat: FY27 Q4 +$1.0M to $2.1M ARR, ~1-5 logos; FY28 (desk renewals >= $50K to AE + CSM) +$1.4M to $2.9M ARR.
 - What I checked / changed: asked for the impact and approved the fix.
+
+### 2026-10-28 — Impact added to slide 7, deck kept at 8 slides (Claude Code)
+- Prompt (paraphrased): without adding a slide, show the impact on the 44% and the ARR ranges (+$1.0M to $2.1M FY27 Q4; +$1.4M to $2.9M FY28).
+- AI output: slide 7 compressed (cards at 12pt, tighter wording) with a new "If it works" band: 44% falls to 18-31%, +$1.0M-$2.1M ARR kept in FY27 Q4, +$1.4M-$2.9M in FY28, plus a basis footer. 44% re-run: FY26 desk book with $50K+ renewals at half the desk-AE gap (30.9%) or the AE rate (17.9%). Script 17 reproduces all six figures; workbook Ex3 E19:G27 and Index rows 39-41 carry them. Slide 7 talk track gains a "what it's worth" paragraph and evidence link (2:15 to 2:30; run time 19:15) in the speaker notes, narrative doc and source.
+- What I checked / changed: asked for the change; slide 7 render checked after two layout fixes.
