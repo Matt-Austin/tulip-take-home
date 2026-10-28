@@ -51,23 +51,26 @@ for role, g in r.groupby("role"):
 f = add_text_signals(renewal_cohort(df, 2027))
 o = f[f["Won/Lost"].eq("Open") & f["text_signal"].eq("Risk")].join(roles, on="Opportunity Owner")
 big = o[o["Renewal ARR"] >= 100000]
+# Pods start 15 Nov (FY27 Q4), so only the renewals closing in Q4 can be worked; Q2/Q3 closes happen first
+pods = big[big["close_fq"].eq(4)]
 rows += [("FY27 open renewals with risk text", len(o)), ("their Renewal ARR", o["Renewal ARR"].sum()),
          ("of which owned by the renewal desk", o.loc[o["role"].eq("Renewal desk"), "Renewal ARR"].sum()),
          ("at-risk renewals >= $100K", len(big)), ("their Renewal ARR", big["Renewal ARR"].sum()),
-         ("of which owned by the renewal desk", int(big["role"].eq("Renewal desk").sum())),
-         ("of which close in Q4", int(big["close_fq"].eq(4).sum())),
-         ("their Renewal ARR", big.loc[big["close_fq"].eq(4), "Renewal ARR"].sum())]
-big.sort_values("Renewal ARR", ascending=False)[
-    ["Account Name", "close_fq", "Renewal ARR", "Utilization - 1 Month Ago", "role", "text_cats"]
-].to_csv(OUT / "17_ex3_pod_accounts.csv", index=False)
+         ("of which close before pods go live (Q2-Q3)", len(big) - len(pods)),
+         ("their Renewal ARR (before pods)", big["Renewal ARR"].sum() - pods["Renewal ARR"].sum()),
+         ("Pod accounts: at-risk >= $100K closing in Q4", len(pods)), ("their Renewal ARR (pods)", pods["Renewal ARR"].sum()),
+         ("of which owned by the renewal desk (pods)", int(pods["role"].eq("Renewal desk").sum()))]
+out_pods = big.sort_values("Renewal ARR", ascending=False)[
+    ["Account Name", "close_fq", "Renewal ARR", "Utilization - 1 Month Ago", "role", "text_cats"]].copy()
+out_pods["in pod"] = out_pods["close_fq"].eq(4).map({True: "Yes", False: "No, closes before 15 Nov"})
+out_pods.to_csv(OUT / "17_ex3_pod_accounts.csv", index=False)
 
 # Risk 1 sizing: ARR kept on the desk-owned pod accounts if pods keep at-risk ARR at the AE rate, not the desk rate
-desk_pod = big[big["role"].eq("Renewal desk")]
+desk_pod = pods[pods["role"].eq("Renewal desk")]
 rate = {row[0].rsplit(", ", 1)[1]: row[1] for row in rows if row[0].startswith("FY26 risk-text Renewal ARR retained")}
 lift = rate["AE (mixed source)"] - rate["Renewal desk"]
 rows += [("Desk-owned pod accounts", len(desk_pod)), ("their Renewal ARR (desk-owned pods)", desk_pod["Renewal ARR"].sum()),
-         ("ARR kept if pods retain at the AE rate, vs the desk rate", lift * desk_pod["Renewal ARR"].sum()),
-         ("  of which closing in Q4", lift * desk_pod.loc[desk_pod["close_fq"].eq(4), "Renewal ARR"].sum())]
+         ("ARR kept if pods retain at the AE rate, vs the desk rate", lift * desk_pod["Renewal ARR"].sum())]
 
 # Risk 2 control group: Q4 renewals with risk text that the pods don't cover (< $100K), at Ex2B cell rates
 with contextlib.redirect_stdout(io.StringIO()):
