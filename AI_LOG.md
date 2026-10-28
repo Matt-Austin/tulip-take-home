@@ -74,3 +74,8 @@ Tools: Claude (claude.ai project for setup, then Claude Code for analysis), Pyth
 - Prompt (paraphrased): in a Google Doc, write a presentation narrative following the deck's new order (recommendation first).
 - AI output: slide-by-slide speaker script for the 20-minute slot, with a time target per slide and transitions between sections; figures taken from the deck and the script outputs (09 segment rates, 12 quarterly forecast, 17 Ex 3 numbers). Google Doc "Tulip GTM Ops Exercise – Presentation Narrative" (id 13kEg7JdH0dvFavrXr9HNZ-WXGHL8cNZqlifNmmjuok8); source in outputs/ex3_presentation_narrative.html.
 - What I checked / changed: asked for the narrative; to rehearse and adjust wording to my own voice.
+
+### 2026-10-28 — Presentation narrative v2 (Claude Code)
+- Prompt (paraphrased): rewrite the narrative to spend even more time on the recommendation, with speaker-note references (slide number and figure) to the data in the Win rate and Renewals sections.
+- AI output: recommendation now 15:30 of a 19:00 plan (was 11:00); every recommendation slide has "Evidence:" notes citing back-up slides by number and figure; win-rate and renewal sections cut to a 2:25 back-up pass, each slide noting which recommendation slides it supports. Same Google Doc, replaced in place (same link). Source moved to outputs/ex3_presentation_narrative.py (builds the Docs requests); the v1 HTML was removed. One flagged citation: Health At-Risk 0 of 36 is not on any slide (Ex 2F workings).
+- What I checked / changed: asked for the rewrite; to rehearse against the clock.
