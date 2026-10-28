@@ -69,3 +69,8 @@ Tools: Claude (claude.ai project for setup, then Claude Code for analysis), Pyth
 - Prompt (paraphrased): add the Tulip logo (image supplied) to the deck in appropriate places.
 - AI output: drew the mark from three native Slides shapes (a diamond plus two sheared rectangles, geometry measured from the supplied image) instead of uploading the image, so no Drive file or public link was needed. White on the six dark slides (large on the title, medium bottom-right on the three section dividers, small top-right on slides 2 and 8); navy (#0B1628) small top-right, aligned to the content margin, on the 16 light slides. Each mark is a group named `<slide>_logo`.
 - What I checked / changed: asked for the logo; renders checked on the title, a divider, slide 2 and a light content slide.
+
+### 2026-10-28 — Presentation narrative (Claude Code)
+- Prompt (paraphrased): in a Google Doc, write a presentation narrative following the deck's new order (recommendation first).
+- AI output: slide-by-slide speaker script for the 20-minute slot, with a time target per slide and transitions between sections; figures taken from the deck and the script outputs (09 segment rates, 12 quarterly forecast, 17 Ex 3 numbers). Google Doc "Tulip GTM Ops Exercise – Presentation Narrative" (id 13kEg7JdH0dvFavrXr9HNZ-WXGHL8cNZqlifNmmjuok8); source in outputs/ex3_presentation_narrative.html.
+- What I checked / changed: asked for the narrative; to rehearse and adjust wording to my own voice.
