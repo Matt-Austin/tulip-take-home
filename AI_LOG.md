@@ -59,3 +59,8 @@ Tools: Claude (claude.ai project for setup, then Claude Code for analysis), Pyth
 - Prompt (paraphrased): build Ex 3 in my Slides template: one recommendation, one board number, stops/starts with owners, 90-day and 1-year plan, two tripwires.
 - AI output: proposed three options; I chose retention-first. Board number 2.2x (FY27 churn forecast $3.5M vs $1.6M new ARR from FY26 net-new wins). Supporting finding: FY26 desk-owned renewals lost 44% of ARR vs 2% for AE-owned (risk-text renewals: 62 of 75 vs 11 of 31). Filled all 18 template slides in a copy ("Tulip GTM Ops Exercise – Matt Austin"); template was view-only. Figures scripted in analysis/17_ex3_numbers.py.
 - What I checked / changed: picked the recommendation, board number and deck format. Slide 6 chart to be inserted by hand from the Ex1B tab (connector can't link Sheets charts).
+
+### 2026-10-27 — Ex 3 section brought to 8 slides (Claude Code)
+- Prompt (paraphrased): the Ex 3 deliverable is 6–8 slides; add the four missing slides.
+- AI output: four slides added after the agenda/section opener: why renewals (board number 2.2x with $3.5M vs $1.6M, BDR 0 of 75), who owns the renewal (desk 44% vs AE 2% ARR churn), where the money is (17 at-risk renewals of $100K+ = $5.4M; desk owns 14; 12 close in Q4 = $4.4M; top four listed), funding (no new hires; BDR program line moves to renewals). New figures scripted in analysis/17_ex3_numbers.py, account list in outputs/17_ex3_pod_accounts.csv.
+- What I checked / changed: asked for the four slides; layout checked from rendered thumbnails (table notes shortened to one category so the callout no longer covers row four).

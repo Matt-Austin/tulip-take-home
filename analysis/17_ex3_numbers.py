@@ -45,7 +45,13 @@ o = f[f["Won/Lost"].eq("Open") & f["text_signal"].eq("Risk")].join(roles, on="Op
 big = o[o["Renewal ARR"] >= 100000]
 rows += [("FY27 open renewals with risk text", len(o)), ("their Renewal ARR", o["Renewal ARR"].sum()),
          ("of which owned by the renewal desk", o.loc[o["role"].eq("Renewal desk"), "Renewal ARR"].sum()),
-         ("at-risk renewals >= $100K", len(big)), ("their Renewal ARR", big["Renewal ARR"].sum())]
+         ("at-risk renewals >= $100K", len(big)), ("their Renewal ARR", big["Renewal ARR"].sum()),
+         ("of which owned by the renewal desk", int(big["role"].eq("Renewal desk").sum())),
+         ("of which close in Q4", int(big["close_fq"].eq(4).sum())),
+         ("their Renewal ARR", big.loc[big["close_fq"].eq(4), "Renewal ARR"].sum())]
+big.sort_values("Renewal ARR", ascending=False)[
+    ["Account Name", "close_fq", "Renewal ARR", "Utilization - 1 Month Ago", "role", "text_cats"]
+].to_csv(OUT / "17_ex3_pod_accounts.csv", index=False)
 
 # What holding FY27 churn at the FY26 rate is worth
 fy26_rate = 0.16159

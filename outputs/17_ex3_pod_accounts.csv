@@ -1,0 +1,18 @@
+Account Name,close_fq,Renewal ARR,Utilization - 1 Month Ago,role,text_cats
+Antares Metals,4,1898743.28,0.34,Renewal desk,"['Champion loss', 'Competitive displacement']"
+Summit Robotics,4,482725.93,0.47,Renewal desk,['Competitive displacement']
+Silvermere Solutions,4,422262.5,0.1,Renewal desk,"['Budget pressure', 'Champion loss']"
+Briarstone & Co.,4,322745.5,0.24,Renewal desk,"['Adoption / value gap', 'Budget pressure']"
+Nettleby Aerospace,2,322565.64,0.34,AE (mixed source),"['Customer business change', 'M&A / ownership change']"
+"Hawkridge Co., Ltd.",2,257721.64,2.89,Renewal desk,['Adoption / value gap']
+Thatcher Polymers,4,240347.25,0.13,Renewal desk,"['Adoption / value gap', 'Champion loss', 'Explicit churn intent']"
+Knollwood S.A.,4,235827.9,0.23,AE (mixed source),"['Adoption / value gap', 'Competitive displacement']"
+Norwood Dynamics,3,164340.0,0.43,Renewal desk,"['Adoption / value gap', 'M&A / ownership change']"
+Pendlewood Devices,4,150645.91,0.38,Renewal desk,"['Budget pressure', 'Customer business change']"
+Tarrybrook Chemicals,4,146080.0,0.29,Renewal desk,['Budget pressure']
+Rookery Microsystems,4,136950.0,0.33,Renewal desk,['Adoption / value gap']
+Lakeshore GmbH,4,136950.0,0.07,Renewal desk,"['Champion loss', 'Customer business change']"
+Yarrowfield Biosciences,4,132153.1,0.34,Renewal desk,['Budget pressure']
+Quartz Mechanical,3,105433.24,0.21,AE (mixed source),['Adoption / value gap']
+Thornton Energy,3,104812.4,0.67,Renewal desk,"['Budget pressure', 'Champion loss']"
+Hawthorne Mechanical,4,101233.44,0.51,Renewal desk,"['Adoption / value gap', 'Champion loss']"
