@@ -150,6 +150,33 @@ def style_requests(doc_paras):
     return reqs
 
 
+# Deck slide object IDs in presentation order; the narrative's H2 sections map onto them one to one.
+DECK_SLIDES = ["sl_01", "sl_02", "sl_3b", "sl_3a", "sl_3c", "sl_15", "sl_3d", "sl_16", "sl_17", "sl_14",
+               "sl_05", "sl_06", "sl_07", "sl_08", "sl_09", "sl_11", "sl_12", "sl_13", "sl_18"]
+
+
+def speaker_notes():
+    """Plain-text speaker notes per slide: the time target, the script, and evidence as bullets."""
+    notes, cur = [], None
+    for style, text in paragraphs():
+        if style == "H2":
+            m = re.search(r"\((\d+:\d\d)\)$", text)
+            cur = [f"Time: {m.group(1)}" if m else "Appendix: use if asked"]
+            notes.append(cur)
+        elif cur is not None and style in ("P", "EL", "EI"):
+            cur.append(("• " if style == "EI" else "") + text)
+    assert len(notes) == len(DECK_SLIDES)
+    return {sid: "\n".join(n) for sid, n in zip(DECK_SLIDES, notes)}
+
+
+def notes_requests(notes_ids):
+    """notes_ids: {slide id: speakerNotesObjectId}. Replaces each slide's speaker notes."""
+    reqs = []
+    for sid, text in speaker_notes().items():
+        reqs.append({"insertText": {"objectId": notes_ids[sid], "insertionIndex": 0, "text": text}})
+    return reqs
+
+
 if __name__ == "__main__":
     # python outputs/ex3_presentation_narrative.py text <end_index>
     # python outputs/ex3_presentation_narrative.py style <read_doc.json>

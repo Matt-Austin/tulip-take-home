@@ -89,3 +89,8 @@ Tools: Claude (claude.ai project for setup, then Claude Code for analysis), Pyth
 - Prompt (paraphrased): use one term for the outbound team and define "value reviews" on slide 7.
 - AI output: slide 7 now says BDR (matching the data's "BDR Outbound" and slide 6) and adds "Value review: AE + CSM meet the sponsor on value delivered, adoption gaps and the next team or site". Narrative doc and its source updated to match.
 - What I checked / changed: asked for both edits after confirming BDRs keep their roles.
+
+### 2026-10-28 — Speaker notes added to the deck (Claude Code)
+- Prompt (paraphrased): put the narrative's slide notes into the deck's speaker notes.
+- AI output: speaker notes on all 19 slides, generated from the narrative source (outputs/ex3_presentation_narrative.py, speaker_notes()): time target, the script, and evidence as bullets on slides 1-9; "use if asked" key figures on the evidence divider and A1-A9. Notes were empty before, so nothing was overwritten.
+- What I checked / changed: asked for the notes.
