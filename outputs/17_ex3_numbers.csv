@@ -22,4 +22,14 @@ their Renewal ARR,5361537.73
 of which owned by the renewal desk,14
 of which close in Q4,12
 their Renewal ARR,4406664.8100000005
+"Q4 risk-text renewals, pods",12
+their Renewal ARR (pods),4406664.8100000005
+modelled ARR loss % low (pods),23.56278288164478
+modelled ARR loss % medium (pods),36.94202713820659
+modelled ARR loss % high (pods),53.91944553828393
+"Q4 risk-text renewals, control, not in pods",49
+"their Renewal ARR (control, not in pods)",993197.9199999998
+"modelled ARR loss % low (control, not in pods)",36.67220032173689
+"modelled ARR loss % medium (control, not in pods)",48.80828016523524
+"modelled ARR loss % high (control, not in pods)",62.4534315369208
 ARR kept if FY27 churn held at FY26 rate,426790.2991359993

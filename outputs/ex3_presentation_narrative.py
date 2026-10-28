@@ -1,144 +1,166 @@
-"""Ex 3 presentation narrative (v2): recommendation-heavy, with slide citations.
+"""Ex 3 presentation narrative (v3): nine-slide main deck built on the brief's four asks; evidence in A1-A9.
 Builds the Google Docs batchUpdate requests that replace the narrative doc's body in place.
-Run: python outputs/ex3_presentation_narrative.py <end_index> > requests.json
+Two steps: "text <end_index>" replaces the body; "style <read_doc.json>" styles it from a fresh read.
 """
 import json
+import re
 import sys
 
 # (style, text); style: T=title, H1, H2, P=body, E=evidence note (bold label), X=transition (italic label)
 DOC = [
     ("T", "Presentation narrative: GTM Operations take-home"),
-    ("P", "Speaker script for the 20-minute presenting slot, in the deck's current order. About 15½ minutes go on the recommendation. The win-rate and renewal sections are a fast back-up pass, because their numbers have already been used and cited by slide number during the recommendation. Planned run time is 19:00, leaving a minute of buffer."),
-    ("P", "Run time: Opening 0:45. Recommendation 15:30. Win rate 1:20. Renewals 1:05. Close 0:20."),
-    ("P", "Evidence lines are for you, not to read aloud. They name the back-up slide and figure so you can jump to it if the panel asks."),
+    ("P", "Speaker script for the 20-minute presenting slot. The main deck is nine slides and answers the brief's four asks in order: the recommendation up top (slide 2), one number with its cut (slide 3), what stops and starts with functions, sequence and owners (slides 6 to 8), and two ways it could be wrong with tripwires (slide 9). Slides 4 and 5 say why this lever and where it lands. The Exercise 1 and 2 work sits in the appendix as A1 to A9 and is not presented; it is there for questions."),
+    ("P", "Run time: 19:00 on slides 1 to 9, leaving a minute of buffer. Evidence lines are for you, not to read aloud: they name the appendix slide and figure to jump to if the panel asks."),
 
-    ("H1", "Opening (0:45)"),
-    ("H2", "Slide 1. Title (0:20)"),
-    ("P", "Thanks for the time. I'm going to give you one recommendation for FY28 and spend most of my time on it: what changes, who owns it, what it costs, and how we'd know in one quarter if I'm wrong. The win-rate and renewal analysis is behind it, and I'll point to it as we go."),
-    ("H2", "Slide 2. Agenda (0:25)"),
-    ("P", "The recommendation first. Then a quick pass through win rate and renewals, which is where the numbers come from. I'll cite those slides by number as I use them, so you can ask me to jump to any of them."),
+    ("H1", "Main deck (19:00)"),
+    ("H2", "Slide 1. Title: Protect the renewal base (0:30)"),
+    ("P", "Thanks for having me. One recommendation: protect the renewal base Tulip expands from, starting in November. The next eight slides are that recommendation: the number behind it, what stops and starts, who owns each piece, and how we'd know within a quarter if I'm wrong. The Exercise 1 and 2 work is in the appendix, and I'll point to it as I go."),
 
-    ("H1", "01. Recommendation (15:30)"),
-    ("H2", "Slide 3. Section divider: The Recommendation (0:15)"),
-    ("P", "Short version: stop funding outbound and put that capacity on the renewals we are about to lose."),
+    ("H2", "Slide 2. The recommendation (3:00)"),
+    ("P", "Starting 1 November, move every at-risk renewal over $100K, 17 accounts holding $5.4M, from the renewal desk to a save pod: a senior AE plus the account's CSM. Pay for it by stopping BDR outbound."),
+    ("P", "Here is why that's the right call for a land-and-expand business. Tulip lands small in one team or site and grows by expanding into the next ones. That only works if the first renewal happens. A lost renewal costs more than its own ARR; it ends every expansion that account would have produced. So the renewal is where Tulip's growth is protected or lost."),
+    ("P", "Last year the renewal desk lost 44% of the renewal ARR it owned. AE-owned renewals lost 2%. That's the number I'd put in front of the board, and the next slide shows exactly how I cut it."),
+    ("P", "Meanwhile the motion we funded to land new logos isn't landing them: BDR outbound won none of its 75 closed net-new deals. Stopping it is how this gets paid for with no new headcount."),
+    ("E", "Evidence: A5, BDR 0 of 75 closed net-new deals. A7, the FY27 forecast by quarter. Slide 5 for the 17 by name."),
+    ("P", "If you stop listening after this slide: at-risk renewals over $100K move to AE plus CSM pods on 1 November, outbound stops, and we know by 31 January whether it worked."),
 
-    ("H2", "Slide 4. The recommendation (2:30)"),
-    ("P", "From November, move every at-risk renewal over $100K to a save pod: a senior AE plus the account's CSM. Fund it by stopping BDR outbound."),
-    ("P", "The number I'd put in front of the board is 2.2 times. Our FY27 churn forecast is $3.5M in the medium case. All eleven net-new deals we won in FY26 brought in $1.6M of new ARR. On today's course we lose more than twice what new business added last year."),
-    ("E", "Evidence: slide 20, FY27 churn $3.5M medium, range $2.5M to $4.8M. Slide 13, FY26 net-new 11 won, 124 lost, 8.1%."),
-    ("P", "Three findings drive the call. First, new business isn't improving: net-new win rate is 8.1%, not the 19% in the board pack. Second, the outbound motion we fund for acquisition won none of its 75 closed net-new deals. Third, who owns a renewal matters: renewals on the renewal desk lost 44% of their ARR last year, AE-owned renewals lost 2%."),
-    ("E", "Evidence: slide 13, board definition 9.4% to 18.5% vs net-new 7.0% to 8.1%. Slide 17, BDR 0 of 75 closed net-new deals. Slide 6, desk vs AE churn."),
-    ("P", "I looked at the obvious alternative, which is to fix acquisition by shifting mix toward Enterprise. It's worth about $57K a year. The renewal side is worth more than seven times that: just holding FY27 churn at FY26's 16.2% keeps about $0.4M, more than a quarter of what net-new added."),
-    ("E", "Evidence: slide 16, mix lever +0.3 pts, $57K a year, all-Enterprise ceiling 9.8%. Slide 19, FY26 ARR churn 16.2%."),
-    ("X", "Transition: Let me take the three numbers in turn."),
+    ("H2", "Slide 3. The number: 44% (2:30)"),
+    ("P", "The cut. Every FY26 renewal that closed Won or Lost, valued at Renewal ARR. I grouped owners by their book: an owner whose opportunities are 80% or more renewals counts as the renewal desk; everyone else is an AE. Renewals the desk owned lost 44% of their ARR. Renewals AEs owned lost 2%."),
+    ("P", "It holds like for like. Among renewals where the CSM note or Gong call flagged risk, the desk lost 62 of 75 and AEs lost 11 of 31. Among renewals of $50K or more, the desk lost 9 of 18 and AEs lost none of 37. At the same size and the same risk signal, AE-owned accounts mostly stay."),
+    ("P", "Why this number and not a bigger one: I could show $3.5M of forecast churn, but that's the medium case of a model. 44% is measured, a board member can repeat it, and it points at the one thing we'd change: who owns the renewal."),
+    ("P", "What it doesn't prove is cause. The desk may simply be handed the accounts that were already leaving. That is Risk 1 on slide 9, and it has a tripwire."),
+    ("E", "Evidence: owner roles from scripts 02 and 17 (no appendix slide). A6, FY26 churn overall: 16.2% of ARR, 24.1% of logos. A8, how risk language is read. A9, definitions."),
 
-    ("H2", "Slide 5. Why renewals (2:00)"),
-    ("P", "Left to right. $3.5M is what we expect to lose in FY27, somewhere between $2.5M and $4.8M. $1.6M is everything FY26's net-new wins added, at an 8.1% win rate. And 0 of 75 is outbound's net-new record across two years."),
-    ("P", "The comparison isn't renewals good, new business bad. It's where the next dollar of effort returns more this year. The renewal number is bigger, it's nearer, because most of it closes in Q4, and the accounts are already named. The acquisition motion we'd be protecting by not changing hasn't produced a net-new win."),
-    ("E", "Evidence: slide 20, medium and range by quarter. Slide 13, 8.1% net-new. Slide 17, BDR 0 of 75 and ecosystem-sourced at 14%."),
-    ("P", "If someone pushes on the 19%: the board definition counts order entries. 18 of the 36 FY26 wins are order entries and one is an admin record. Mix explains +10.1 points of the change and performance minus 1.1, so no sales motion improved."),
-    ("E", "Evidence: slide 13 for the counts, slide 14 for the decomposition."),
+    ("H2", "Slide 4. Why this lever (2:30)"),
+    ("P", "Three numbers on why the money goes to retention and not acquisition."),
+    ("P", "$2.1M: renewal ARR churned in FY26. All eleven net-new wins added $1.6M. The base shrank faster than new business grew it."),
+    ("P", "0 of 75: outbound's net-new record over two years. Ecosystem-sourced deals win 14% and marketing-sourced 7%, so the channel we're defunding is the weakest one."),
+    ("P", "$57K: what the obvious alternative is worth. Shifting deal mix toward Enterprise, our best-converting segment, adds 0.3 points of win rate, about $57K of new ARR a year."),
+    ("P", "One more signal for a land-and-expand business: the expansion win rate fell from 37% to 23%. Growth runs through the installed base, and the base is where the leakage is."),
+    ("P", "If someone raises the board's 19%: that definition counts order entries. Net-new win rate is 8.1%, flat with FY25's 7.0%."),
+    ("E", "Evidence: A6, $2.1M of $13.2M churned. A1, net-new 8.1% (11 won, 124 lost) vs board 18.5%. A5, BDR 0 of 75; ecosystem 14%; marketing 7%. A4, mix lever 8.1% to 8.4%, $57K, all-Enterprise ceiling 9.8%. A2, expansion 37% to 23%; mix +10.1 pts, performance minus 1.1."),
 
-    ("H2", "Slide 6. Who owns the renewal (2:15)"),
-    ("P", "This is the finding that says what to change, not just where to look. In FY26 the renewal desk lost 44% of the ARR it owned. AE-owned renewals lost 2%."),
-    ("P", "It holds when you compare like with like. Among renewals where the notes or calls flagged risk, the desk lost 62 of 75 and AEs lost 11 of 31. Among renewals of $50K or more, the desk lost 9 of 18 and AEs lost none of 37. So it isn't only that the desk carries the small accounts."),
-    ("P", "The limit, stated up front: ownership is inferred from each owner's book, and the hardest accounts may be routed to the desk on purpose. If so, moving them won't help. That is Risk 1 on slide 11, and it has a tripwire that reads within a quarter."),
-    ("E", "Evidence: owner roles from scripts 02 and 17 (desk = owners with 80%+ renewals in their book). Risk text definition matches slide 21's rule. FY26 overall churn for context: slide 19, 16.2% of ARR, 24.1% of logos."),
+    ("H2", "Slide 5. Where it lands (1:45)"),
+    ("P", "Seventeen open renewals over $100K have risk language in the CSM note or the Gong call. Together they hold $5.4M. Twelve close in Q4, carrying $4.4M, and the desk owns fourteen of the seventeen."),
+    ("P", "The four largest are on screen, all in Q4 and all with the desk. Antares Metals alone is $1.9M at 34% utilization with a competitor in the notes. Seventeen is a list a VP can review by name every week, which is why I drew the line at $100K."),
+    ("E", "Evidence: A7, Q4 carries $2.1M of the $3.5M medium forecast. A8, the rule when notes and fields disagree. Full list: outputs/17_ex3_pod_accounts.csv."),
 
-    ("H2", "Slide 7. Where the money is (1:45)"),
-    ("P", "Seventeen open renewals over $100K have risk language in the CSM note or the Gong call. Together they hold $5.4M. Twelve of them close in Q4, carrying $4.4M, and the desk owns fourteen of the seventeen."),
-    ("P", "The four largest are on screen, all in Q4 and all with the desk. Antares Metals alone is $1.9M at 34% utilization with a competitor in the notes. Seventeen is a list a VP can review by name every week, which is the point."),
-    ("E", "Evidence: slide 20, Q4 carries $2.1M of the $3.5M medium forecast. Slide 21, the rule for when text overrides the structured fields. Full list: outputs/17_ex3_pod_accounts.csv."),
+    ("H2", "Slide 6. What stops, what starts (2:00)"),
+    ("P", "Stops come first, because they free the money and the time. On 1 November BDR outbound stops; the VP of Marketing owns it. In Q4, Health comes out of forecast calls, owned by the VP of Customer Success: accounts marked At-Risk churned 0 of 36 last year. At the next board meeting the blended win rate comes out of the pack and the net-new rate replaces it; the CRO owns that."),
+    ("P", "Then two starts. Save pods on the seventeen renewals, live by 15 November, owned jointly by the VP of Sales and the VP of CS. And a weekly risk review of all 143 open renewals with risk language, $7.6M of ARR, run by RevOps and paid for from the outbound line."),
+    ("E", "Evidence: A5, BDR 0 of 75. A1, the net-new rate for the board pack. A8, how risk text is read. Health 0 of 36 is from the Ex 2F workings (script 16); no appendix slide."),
 
-    ("H2", "Slide 8. Funding (1:30)"),
-    ("P", "The plan needs no new hires. Six senior AEs from the 51-person AE team lead the seventeen pods, about three accounts each. Each account's existing CSM joins its pod. BDRs move off outbound and onto booking value reviews for pod accounts, so their time goes to accounts we already have."),
-    ("P", "On budget, the BDR outbound program line, meaning tools, data and sequences, moves to renewals and pays for professional-services rescue work on pod accounts. The export doesn't carry those dollar amounts, so Finance confirms the size in week one. I'd rather say that than invent a number."),
-    ("E", "Evidence: slide 17, BDR 0 of 75 is why that line is the one to move. Slide 16, the acquisition alternative is worth $57K a year."),
+    ("H2", "Slide 7. Effect on each function (2:15)"),
+    ("P", "Function by function. AEs: six senior AEs from the 51 lead the pods, about three accounts each. CSMs: each pod account's CSM joins its pod; the desk keeps renewals under $100K, so its load drops by fourteen accounts. SDRs: outbound stops, and they book value reviews for pod accounts instead."),
+    ("P", "Marketing: the outbound program line, meaning tools, data and sequences, pays for professional-services rescue work on pod accounts. The export has no spend data, so Finance sizes the line in week one; I'd rather say that than invent a number."),
+    ("P", "Partner channel: from FY28 Q1, ecosystem-sourced deals get the acquisition budget, because they win 14% against 7% for marketing and 0% for outbound. One caveat: the file doesn't define the Eco source, so I'm treating it as partner-sourced and would confirm that first."),
+    ("P", "Pricing: no list change. Expansion seats are quoted at each account's current per-seat price, the same method that sized the $2.5M expansion opportunity."),
+    ("E", "Evidence: A5, ecosystem 14%, marketing 7%, BDR 0%. A6, expansion $2.5M, 826 seats, $1.8M pursuable. Eco meaning is open item H31 in the hygiene log."),
 
-    ("H2", "Slide 9. Stop and start (1:45)"),
-    ("P", "Three stops, each with an owner. BDR outbound stops from 1 November, owned by the VP of Marketing. Health stops being used in forecast calls this quarter, owned by the VP of Customer Success, because accounts marked At-Risk churned 0 of 36 last year. And the blended win rate comes out of the board pack at the next meeting, owned by the CRO, replaced by the net-new rate."),
-    ("E", "Evidence: Health 0 of 36 is from the Ex 2F workings (script 16), not on a slide. Slide 21, Health never breaks a tie. Slide 13, the net-new rate that replaces the blended one."),
-    ("P", "Two starts. Save pods on the seventeen renewals, live by 15 November, owned jointly by the VP of Sales and the VP of CS. And a weekly risk review of all 143 open renewals with risk language in the notes, $7.6M of ARR, owned by RevOps and paid for from the BDR program line."),
-    ("E", "Evidence: slide 20, the forecast those 143 renewals feed. Slide 21, how text is read when it conflicts with the fields."),
+    ("H2", "Slide 8. Sequence and owners (2:15)"),
+    ("P", "The first 90 days are FY27 Q4. Pods live by 15 November, the budget moved, and a target of Q4 churn at or below $1.4M, our low case, against a medium forecast of $2.1M. Owners: VP Sales and VP CS."),
+    ("P", "Then the year, a quarter at a time. FY28 Q1: if the Q4 tripwires hold, desk renewals over $50K move to AE plus CSM coverage, and the ecosystem channel takes the acquisition budget; owners VP CS and the partner lead. RevOps also turns on required loss reasons and stage history. Q2: the pods work the $1.8M pursuable expansion list and book $0.5M; VP Sales. Q3: ecosystem pipeline reviewed against a 10% net-new win rate; partner lead. Q4: FY28 ARR churn at or below 16%, against 18.4% forecast for FY27, and the CRO decides the future of the desk model."),
+    ("E", "Evidence: A7, Q4 low $1.4M, medium $2.1M, high $3.0M; FY27 18.4%. A6, $1.8M pursuable. A3, Enterprise at 9.8% is the best segment today, so 10% is a stretch. A5, the two data gaps Q1 closes."),
 
-    ("H2", "Slide 10. 90 days and one year (1:45)"),
-    ("P", "The next 90 days are FY27 Q4. Pods live by 15 November, the budget moved, and a target of Q4 churn at or below $1.4M, which is our low case, against a medium forecast of $2.1M."),
-    ("E", "Evidence: slide 20, Q4 low $1.4M, medium $2.1M, high $3.0M."),
-    ("P", "Then a quarter at a time. FY28 Q1: desk renewals over $50K move to AE plus CSM coverage, and we turn on stage history and required loss reasons, which closes both data gaps. Q2: the same six AEs work the $1.8M pursuable expansion list, targeting $0.5M booked. Q3: a partner-sourced acquisition pilot from what's left of the BDR line, aiming at a 10% net-new win rate. Q4: FY28 ARR churn at or below 16%, against 18.4% forecast for FY27, and a decision on the desk model."),
-    ("E", "Evidence: slide 17, the two data gaps Q1 closes. Slide 19, $2.5M expansion of which $1.8M pursuable. Slide 15, Enterprise 9.8% is the best segment today, so 10% is a stretch, not a given. Slide 20, 18.4% forecast."),
+    ("H2", "Slide 9. Where I could be wrong (2:00)"),
+    ("P", "Risk 1: ownership tracks risk rather than causing it. If the desk is simply handed the accounts that were leaving anyway, moving them to AEs won't help. Tripwire: the pods retain under 40% of their at-risk ARR by 31 January. Last year the desk kept 17% of that ARR and AEs kept 65%, so under 40% means the pods look like the desk. We'd see it in the weekly RevOps save report. If it trips, we revert the pods and keep the weekly triage."),
+    ("P", "Risk 2: the notes overstate risk months ahead. The test has to be outside the pods, because inside them a low loss would look like success. So I watch the 49 at-risk Q4 renewals under $100K that stay with the desk. The model expects them to lose 37% to 62% of their ARR. If they lose under 20% by 31 January, the text signal is too noisy to staff against, and we scale the pods back."),
+    ("E", "Evidence: A7, the weakest forecast cell is Q4 risk text with healthy usage, a 25% rate on 20 FY26 records. A8, accounts where the text was wrong in each direction. Control-group range from script 17."),
+    ("P", "Close (0:15): Stop outbound on 1 November, put six senior AEs and their CSMs on seventeen renewals from 15 November, and judge it on 31 January. Happy to take questions; the evidence is in A1 to A9."),
 
-    ("H2", "Slide 11. Two ways this could be wrong (1:45)"),
-    ("P", "Risk 1: ownership tracks risk rather than causing it. If the desk simply receives the accounts that were going to churn anyway, moving them to AEs won't change the outcome. Tripwire: pods retain under 40% of at-risk ARR by 31 January. For reference, last year the desk kept 17% of that ARR and AEs kept 65%. We'd see it in the weekly RevOps save report. If it trips, we revert the pods and keep the weekly triage."),
-    ("P", "Risk 2: the notes overstate risk months ahead of the renewal. Tripwire: Q4 at-risk renewals lose under 15% of their ARR by 31 January, against a model range of 25% to 53%. That would mean the text signal is too noisy to staff against, and we scale the pods back."),
-    ("E", "Evidence: slide 20, the weakest cell is Q4 risk text with healthy usage, a 25% rate on 20 FY26 records, which is exactly what Risk 2 tests. Slide 21, accounts where the text was wrong in each direction."),
-    ("P", "Both read inside one quarter. That's why the plan starts in November rather than at the start of FY28."),
-    ("X", "Transition: The next two sections are the evidence I've been citing. I'll move quickly; stop me on any slide."),
-
-    ("H1", "02. Win rate (1:20, back-up pass)"),
-    ("H2", "Slide 12. Section divider: Win rate (0:05)"),
-    ("P", "Did new-business win rate double? No."),
-    ("H2", "Slide 13. The board number vs net-new (0:15)"),
-    ("P", "Board definition 9.4% to 18.5%; net-new clients 7.0% to 8.1%, 11 won and 124 lost. Supports slides 4 and 5."),
-    ("H2", "Slide 14. Mix vs performance (0:15)"),
-    ("P", "Mix +10.1 points, performance minus 1.1; order entries and admin records alone add 8.4. Supports slide 5."),
-    ("H2", "Slide 15. Segments against plan (0:15)"),
-    ("P", "Enterprise 9.8% vs 15% plan; Mid-Market 6.8% vs 35%; SME 8.2% vs 10%. Plan rates are comparison only. Supports the slide 10 target."),
-    ("H2", "Slide 16. Sizing the mix lever (0:15)"),
-    ("P", "Shifting 10 points of deals to Enterprise: 8.1% to 8.4%, $57K a year. Supports slides 4 and 8."),
-    ("H2", "Slide 17. What the data can't tell us (0:15)"),
-    ("P", "44 net-new deals open past close (6.1% if dead); 58% of losses say No Decision; BDR 0 of 75. Supports slides 5, 8 and 10."),
-
-    ("H1", "03. Renewals (1:05, back-up pass)"),
-    ("H2", "Slide 18. Section divider: Renewals (0:05)"),
-    ("P", "Where the $3.5M comes from."),
-    ("H2", "Slide 19. FY26 baseline (0:20)"),
-    ("P", "FY26 lost 24.1% of logos and 16.2% of ARR. FY27 expansion sizes to $2.5M across 826 seats, $1.8M pursuable. Supports slides 4 and 10."),
-    ("H2", "Slide 20. FY27 churn forecast (0:20)"),
-    ("P", "$2.5M to $4.8M, medium $3.5M (18.4%); Q4 $2.1M. Weakest cell: Q4 risk text with healthy usage, 25% on 20 records. Supports slides 4, 5, 10 and 11."),
-    ("H2", "Slide 21. When the notes and the fields disagree (0:20)"),
-    ("P", "Hawkridge Co. (text says risk), Meridian Foods and Jasperton Mechanical (text says safe). Text decides risk, utilization sets the odds, Health never breaks a tie. Supports slides 7, 9 and 11."),
-
-    ("H1", "Close (0:20)"),
-    ("H2", "Slide 22. Appendix: Definitions and filters (0:20)"),
-    ("P", "Every definition and filter is here and in the workbook, and every number reruns from the scripts. The ask again: stop BDR outbound, put six senior AEs and their CSMs on the seventeen renewals, and judge it on Q4 by 31 January. Happy to take questions."),
+    ("H1", "Appendix: use if asked (not presented)"),
+    ("H2", "Slide 10. Evidence divider"),
+    ("P", "Only if you need to jump into the appendix: the Exercise 1 and 2 analysis behind each number."),
+    ("H2", "A1. Net-new vs the board number"),
+    ("P", "Board definition 9.4% to 18.5%; net-new clients 7.0% to 8.1%, 11 won and 124 lost. FY26 board wins: 18 order entries, 1 admin record, 6 expansions, 11 net-new. Backs slides 4 and 6."),
+    ("H2", "A2. Mix vs performance"),
+    ("P", "Of the +9.0 point change, mix explains +10.1 and performance minus 1.1. Expansion win rate 37% to 23%. Backs slide 4."),
+    ("H2", "A3. Segments against plan"),
+    ("P", "Enterprise 9.8% vs 15% plan; Mid-Market 6.8% vs 35%; SME 8.2% vs 10%. Plan rates are comparison only. Backs the slide 8 target."),
+    ("H2", "A4. Sizing the mix lever"),
+    ("P", "Shifting 10 points of closed deals to Enterprise: 8.1% to 8.4%, about $57K a year. Backs slide 4."),
+    ("H2", "A5. What the data can't tell us"),
+    ("P", "44 net-new deals open past close (6.1% if dead); 58% of losses say No Decision; BDR 0 of 75; ecosystem 14%. Backs slides 2, 4, 6 and 7."),
+    ("H2", "A6. FY26 baseline and expansion"),
+    ("P", "FY26 lost 24.1% of logos and 16.2% of ARR, $2.1M of $13.2M. FY27 expansion $2.5M across 826 seats, $1.8M pursuable. Backs slides 3, 4, 7 and 8."),
+    ("H2", "A7. FY27 churn forecast"),
+    ("P", "$2.5M to $4.8M, medium $3.5M (18.4%); Q4 medium $2.1M. Weakest cell: Q4 risk text with healthy usage, 25% on 20 records. Backs slides 5, 8 and 9."),
+    ("H2", "A8. When notes and fields disagree"),
+    ("P", "Hawkridge Co. (text says risk), Meridian Foods and Jasperton Mechanical (text says safe). Text decides risk, utilization sets the odds, Health never breaks a tie. Backs slides 5, 6 and 9."),
+    ("H2", "A9. Definitions and filters"),
+    ("P", "Every definition and filter, matching the workbook's Definitions tab."),
 ]
 
-STYLE = {"T": "TITLE", "H1": "HEADING_1", "H2": "HEADING_2", "P": "NORMAL_TEXT", "E": "NORMAL_TEXT", "X": "NORMAL_TEXT"}
+STYLE = {"T": "TITLE", "H1": "HEADING_1", "H2": "HEADING_2", "P": "NORMAL_TEXT", "EL": "NORMAL_TEXT", "EI": "NORMAL_TEXT"}
 
 
 def u16(s):
     return len(s.encode("utf-16-le")) // 2
 
 
-def build(end_index):
-    text = "".join(t + "\n" for _, t in DOC)
-    reqs = []
-    if end_index > 2:
-        reqs.append({"deleteContentRange": {"range": {"startIndex": 1, "endIndex": end_index - 1}}})
+def paragraphs():
+    """Expand DOC into (style, text) paragraphs: an evidence note becomes a bold 'Evidence:' label plus one bullet per item."""
+    for style, text in DOC:
+        if style == "E":
+            yield "EL", "Evidence:"
+            for item in re.split(r"\.\s+(?=[A-Z])", text[len("Evidence: "):].rstrip(".")):
+                yield "EI", item[0].upper() + item[1:] + "."
+        else:
+            yield style, text
+
+
+def text_requests(end_index):
+    """Step 1: replace the body text (guard with the doc's revisionId)."""
+    text = "".join(t + "\n" for _, t in paragraphs())
+    reqs = [{"deleteContentRange": {"range": {"startIndex": 1, "endIndex": end_index - 1}}}] if end_index > 2 else []
     reqs.append({"insertText": {"location": {"index": 1}, "text": text}})
-    total = 1 + u16(text)
-    reqs.append({"updateParagraphStyle": {"range": {"startIndex": 1, "endIndex": total},
-                 "paragraphStyle": {"namedStyleType": "NORMAL_TEXT"}, "fields": "namedStyleType"}})
-    reqs.append({"updateTextStyle": {"range": {"startIndex": 1, "endIndex": total},
-                 "textStyle": {"bold": False, "italic": False}, "fields": "bold,italic"}})
-    pos = 1
-    for style, t in DOC:
-        n = u16(t)
+    return reqs
+
+
+def style_requests(doc_paras):
+    """Step 2: style from the doc as read back. doc_paras = [(startIndex, endIndex, text)] for non-empty paragraphs."""
+    spec = list(paragraphs())
+    assert [t for _, _, t in doc_paras] == [t for _, t in spec], "doc text differs from spec"
+    first, last = doc_paras[0][0], doc_paras[-1][1]
+    reqs = [{"deleteParagraphBullets": {"range": {"startIndex": first, "endIndex": last}}},
+            {"updateParagraphStyle": {"range": {"startIndex": first, "endIndex": last},
+             "paragraphStyle": {"namedStyleType": "NORMAL_TEXT"}, "fields": "namedStyleType"}},
+            {"updateTextStyle": {"range": {"startIndex": first, "endIndex": last - 1},
+             "textStyle": {"bold": False, "italic": False}, "fields": "bold,italic"}}]
+    bullets = []
+    for (st, en, _), (style, _) in zip(doc_paras, spec):
         if style in ("T", "H1", "H2"):
-            reqs.append({"updateParagraphStyle": {"range": {"startIndex": pos, "endIndex": pos + n + 1},
+            reqs.append({"updateParagraphStyle": {"range": {"startIndex": st, "endIndex": en},
                          "paragraphStyle": {"namedStyleType": STYLE[style], "keepWithNext": True},
                          "fields": "namedStyleType,keepWithNext"}})
-        elif style == "E":
-            reqs.append({"updateTextStyle": {"range": {"startIndex": pos, "endIndex": pos + n},
+        elif style == "EL":
+            reqs.append({"updateTextStyle": {"range": {"startIndex": st, "endIndex": en - 1},
+                         "textStyle": {"bold": True, "italic": True}, "fields": "bold,italic"}})
+            reqs.append({"updateParagraphStyle": {"range": {"startIndex": st, "endIndex": en},
+                         "paragraphStyle": {"keepWithNext": True}, "fields": "keepWithNext"}})
+        elif style == "EI":
+            reqs.append({"updateTextStyle": {"range": {"startIndex": st, "endIndex": en - 1},
                          "textStyle": {"italic": True}, "fields": "italic"}})
-            reqs.append({"updateTextStyle": {"range": {"startIndex": pos, "endIndex": pos + u16("Evidence:")},
-                         "textStyle": {"bold": True}, "fields": "bold"}})
-        elif style == "X":
-            reqs.append({"updateTextStyle": {"range": {"startIndex": pos, "endIndex": pos + u16("Transition:")},
-                         "textStyle": {"italic": True}, "fields": "italic"}})
-        pos += n + 1
+            if bullets and bullets[-1][1] == st:
+                bullets[-1][1] = en
+            else:
+                bullets.append([st, en])
+    reqs += [{"createParagraphBullets": {"range": {"startIndex": a, "endIndex": b}, "bulletPreset": "BULLET_DISC_CIRCLE_SQUARE"}}
+             for a, b in bullets]
     return reqs
 
 
 if __name__ == "__main__":
-    print(json.dumps(build(int(sys.argv[1])), ensure_ascii=False))
+    # python outputs/ex3_presentation_narrative.py text <end_index>
+    # python outputs/ex3_presentation_narrative.py style <read_doc.json>
+    if sys.argv[1] == "text":
+        print(json.dumps(text_requests(int(sys.argv[2])), ensure_ascii=False))
+    else:
+        d = json.load(open(sys.argv[2]))["content"]
+        paras = []
+        for el in d["tabs"][0]["documentTab"]["body"]["content"]:
+            if "paragraph" in el:
+                t = "".join(r.get("textRun", {}).get("content", "") for r in el["paragraph"]["elements"]).rstrip("\n")
+                if t:
+                    paras.append((el["startIndex"], el["endIndex"], t))
+        print(json.dumps(style_requests(paras), ensure_ascii=False))
