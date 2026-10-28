@@ -177,6 +177,68 @@ def notes_requests(notes_ids):
     return reqs
 
 
+# Where each slide's numbers live: workbook tabs (sheet gid) and scripts. Used for slide source lines and speaker notes.
+WORKBOOK = "https://docs.google.com/spreadsheets/d/1QMN-ye0lP8HNHmWVBBNg9bAO7SSHLm_QpOgmhTSz7qc/edit#gid="
+REPO = "https://github.com/Matt-Austin/tulip-take-home/blob/main/"
+TAB_GID = {"Read me": 120, "Index": 121, "Definitions": 104, "Ex1A Win Rate": 105, "Ex1B Decomposition": 110,
+           "Ex1C Segments": 111, "Ex1D Gaps": 116, "Ex2A Baseline": 112, "Ex2B Forecast": 113, "Ex2C Text": 117,
+           "Ex2D Conflicts": 118, "Ex2E Expansion": 114, "Ex2F Health": 115, "Ex3 Recommendation": 119, "Owner Teams": 101}
+SOURCES = {  # slide id: (workbook tabs, code paths)
+    "sl_01": (["Read me", "Index"], ["README.md"]),
+    "sl_02": (["Ex3 Recommendation", "Ex1D Gaps"], ["analysis/17_ex3_numbers.py", "analysis/10_ex1d_gaps.py"]),
+    "sl_3b": (["Ex3 Recommendation", "Owner Teams"], ["analysis/17_ex3_numbers.py", "analysis/02_size_labels.py"]),
+    "sl_3a": (["Ex2A Baseline", "Ex1A Win Rate", "Ex1D Gaps", "Ex1C Segments"], ["analysis/11_ex2a_baseline.py", "analysis/10_ex1d_gaps.py", "analysis/09_ex1c_segments.py"]),
+    "sl_3c": (["Ex3 Recommendation", "Ex2B Forecast"], ["analysis/17_ex3_numbers.py", "analysis/12_ex2b_forecast.py"]),
+    "sl_15": (["Ex1D Gaps", "Ex2F Health", "Ex1A Win Rate", "Ex3 Recommendation"], ["analysis/10_ex1d_gaps.py", "analysis/16_ex2f_health.py", "analysis/17_ex3_numbers.py"]),
+    "sl_3d": (["Ex1D Gaps", "Ex2E Expansion"], ["analysis/10_ex1d_gaps.py", "analysis/15_ex2e_expansion.py"]),
+    "sl_16": (["Ex2B Forecast", "Ex2E Expansion", "Ex1C Segments"], ["analysis/12_ex2b_forecast.py", "analysis/15_ex2e_expansion.py"]),
+    "sl_17": (["Ex3 Recommendation", "Ex2B Forecast"], ["analysis/17_ex3_numbers.py", "analysis/12_ex2b_forecast.py"]),
+    "sl_14": (["Index"], ["README.md"]),
+    "sl_05": (["Ex1A Win Rate"], ["analysis/07_ex1a_definitions.py", "analysis/04_board_backtest.py"]),
+    "sl_06": (["Ex1B Decomposition"], ["analysis/08_ex1b_decomposition.py"]),
+    "sl_07": (["Ex1C Segments"], ["analysis/09_ex1c_segments.py"]),
+    "sl_08": (["Ex1C Segments", "Ex3 Recommendation"], ["analysis/09_ex1c_segments.py", "analysis/17_ex3_numbers.py"]),
+    "sl_09": (["Ex1D Gaps"], ["analysis/10_ex1d_gaps.py"]),
+    "sl_11": (["Ex2A Baseline", "Ex2E Expansion"], ["analysis/11_ex2a_baseline.py", "analysis/15_ex2e_expansion.py"]),
+    "sl_12": (["Ex2B Forecast"], ["analysis/12_ex2b_forecast.py"]),
+    "sl_13": (["Ex2C Text", "Ex2D Conflicts"], ["analysis/13_ex2c_text.py", "analysis/14_ex2d_conflicts.py"]),
+    "sl_18": (["Definitions", "Index"], ["README.md"]),
+}
+
+
+def source_links(sid):
+    """[(label, url)] for a slide: workbook tabs first, then code."""
+    tabs, code = SOURCES[sid]
+    return [(t, WORKBOOK + str(TAB_GID[t])) for t in tabs] + [(c, REPO + c) for c in code]
+
+
+def source_line(sid):
+    """One-line slide footer text and the link ranges inside it."""
+    tabs, code = SOURCES[sid]
+    text, links = "Source: workbook ", []
+    for i, t in enumerate(tabs):
+        if i: text += ", "
+        links.append((len(text), len(text) + len(t), WORKBOOK + str(TAB_GID[t]))); text += t
+    text += "  ·  code "
+    for i, c in enumerate(code):
+        if i: text += ", "
+        links.append((len(text), len(text) + len(c), REPO + c)); text += c
+    return text, links
+
+
+def notes_with_sources():
+    """Speaker notes plus a Sources block; returns {sid: (text, link ranges)}."""
+    out = {}
+    for sid, body in speaker_notes().items():
+        text, links = body + "\nSources:", []
+        for label, url in source_links(sid):
+            kind = "Code" if url.startswith(REPO) else "Workbook tab"
+            text += f"\n• {kind}: "
+            links.append((len(text), len(text) + len(label), url)); text += label
+        out[sid] = (text, links)
+    return out
+
+
 if __name__ == "__main__":
     # python outputs/ex3_presentation_narrative.py text <end_index>
     # python outputs/ex3_presentation_narrative.py style <read_doc.json>
