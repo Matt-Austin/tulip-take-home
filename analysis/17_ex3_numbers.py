@@ -5,6 +5,7 @@ Writes outputs/17_ex3_numbers.csv.
 import contextlib
 import io
 import runpy
+from pathlib import Path
 
 import pandas as pd
 
@@ -59,7 +60,7 @@ big.sort_values("Renewal ARR", ascending=False)[
 
 # Risk 2 control group: Q4 renewals with risk text that the pods don't cover (< $100K), at Ex2B cell rates
 with contextlib.redirect_stdout(io.StringIO()):
-    fc = runpy.run_path("12_ex2b_forecast.py")["open_"]
+    fc = runpy.run_path(str(Path(__file__).with_name("12_ex2b_forecast.py")))["open_"]
 q4 = fc[fc["close_fq"].eq(4) & ~fc["cell"].str.contains("no text risk")]
 for label, s in [("pods", q4[q4["Renewal ARR"] >= 100000]), ("control, not in pods", q4[q4["Renewal ARR"] < 100000])]:
     arr = s["Renewal ARR"].sum()

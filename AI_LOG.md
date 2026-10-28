@@ -94,3 +94,8 @@ Tools: Claude (claude.ai project for setup, then Claude Code for analysis), Pyth
 - Prompt (paraphrased): put the narrative's slide notes into the deck's speaker notes.
 - AI output: speaker notes on all 19 slides, generated from the narrative source (outputs/ex3_presentation_narrative.py, speaker_notes()): time target, the script, and evidence as bullets on slides 1-9; "use if asked" key figures on the evidence divider and A1-A9. Notes were empty before, so nothing was overwritten.
 - What I checked / changed: asked for the notes.
+
+### 2026-10-28 — Hand-off packaging (Claude Code)
+- Prompt (paraphrased): organise the Ex 1 and 2 numbers so reviewers can reproduce them; Ex 3 deck to link to the sources.
+- AI output: submission copy of the Sheet, "Tulip GTM Ops Exercise – Numbers Workbook – Matt Austin" (id 1QMN-ye0lP8HNHmWVBBNg9bAO7SSHLm_QpOgmhTSz7qc), without my working tabs (pivots, FY25/FY26 Clients, Selected Accounts). New tabs: Read me; Index (every reported number: value, definition, cell link, live or script, script and output); Ex1D Gaps (live; matches script 10); Ex2C Text and Ex2D Conflicts (script values); Ex3 Recommendation (44% board number live, reconciles to script 17 at 0 difference; pod accounts and Risk 2 control group from script 17). README rewritten with run order and deliverable links; stale HANDOFF.md removed; script 17 fixed to run from the repo root. Repo pushed to GitHub.
+- What I checked / changed: chose the submission copy and GitHub. Sharing the Sheet, deck and repo with reviewers is mine to do.
