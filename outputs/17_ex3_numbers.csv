@@ -1,0 +1,22 @@
+figure,value
+FY27 medium churn ARR,3491417.3
+FY26 net-new wins,11
+FY26 net-new New Committed ARR,1582904.62
+Board number: churn / net-new ARR,2.2057028932040135
+Average new ARR per FY26 net-new win,143900.42
+"Mix-shift lever, ARR a year",57560.16800000001
+"FY26 ARR churn, AE (mixed source)",0.021456968644261325
+"FY26 risk-text renewals churned, AE (mixed source)",11 of 31
+"FY26 renewals >= $50K churned, AE (mixed source)",0 of 37
+"FY26 ARR churn, Eco/partner owner",0.06839924783302494
+"FY26 risk-text renewals churned, Eco/partner owner",14 of 23
+"FY26 renewals >= $50K churned, Eco/partner owner",0 of 0
+"FY26 ARR churn, Renewal desk",0.44044468139733495
+"FY26 risk-text renewals churned, Renewal desk",62 of 75
+"FY26 renewals >= $50K churned, Renewal desk",9 of 18
+FY27 open renewals with risk text,143
+their Renewal ARR,7587923.83
+of which owned by the renewal desk,6188471.959999999
+at-risk renewals >= $100K,17
+their Renewal ARR,5361537.73
+ARR kept if FY27 churn held at FY26 rate,426790.2991359993

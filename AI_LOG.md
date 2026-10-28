@@ -54,3 +54,8 @@ Tools: Claude (claude.ai project for setup, then Claude Code for analysis), Pyth
 - Prompt (paraphrased): re-run every component with everything learned; then apply all recommended corrections and improvements.
 - AI output: logo churn 25.1% -> 24.1% (accounts with an FY27 renewal aren't churned); text-rule fixes (stale-flag notes override risk words; M&A and ROI phrasing); explicit-intent tier in 2B (FY27 medium 24.3% -> 18.4%); definitions centralised in common.py (Ex 1 outputs unchanged); one-page ex1/ex2 commentaries with detail in outputs/workings; Sheet tabs Ex1A, Ex1B, Ex1C, Ex2A, Ex2E, Ex2F live formulas and Ex2B values, all reconciled to Python.
 - What I checked / changed: approved all recommendations. Time log to follow.
+
+### 2026-10-27 — Ex 3 recommendation deck (Claude Code)
+- Prompt (paraphrased): build Ex 3 in my Slides template: one recommendation, one board number, stops/starts with owners, 90-day and 1-year plan, two tripwires.
+- AI output: proposed three options; I chose retention-first. Board number 2.2x (FY27 churn forecast $3.5M vs $1.6M new ARR from FY26 net-new wins). Supporting finding: FY26 desk-owned renewals lost 44% of ARR vs 2% for AE-owned (risk-text renewals: 62 of 75 vs 11 of 31). Filled all 18 template slides in a copy ("Tulip GTM Ops Exercise – Matt Austin"); template was view-only. Figures scripted in analysis/17_ex3_numbers.py.
+- What I checked / changed: picked the recommendation, board number and deck format. Slide 6 chart to be inserted by hand from the Ex1B tab (connector can't link Sheets charts).
